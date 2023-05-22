@@ -1,0 +1,87 @@
+[gd_scene load_steps=12 format=3 uid="uid://cn5nkiasjipcc"]
+
+[ext_resource type="Script" path="res://enemys/hearth.gd" id="1_2ytlg"]
+[ext_resource type="Texture2D" uid="uid://dscmfvlu7y6mo" path="res://assets/hearth-sprite.png" id="2_sag5e"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7kr3b"]
+radius = 5.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_etctd"]
+atlas = ExtResource("2_sag5e")
+region = Rect2(0, 0, 103, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lvd8g"]
+atlas = ExtResource("2_sag5e")
+region = Rect2(158, 0, 103, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f6wvh"]
+atlas = ExtResource("2_sag5e")
+region = Rect2(316, 0, 103, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mow5i"]
+atlas = ExtResource("2_sag5e")
+region = Rect2(0, 161, 103, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k3jkh"]
+atlas = ExtResource("2_sag5e")
+region = Rect2(158, 161, 103, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nxmpg"]
+atlas = ExtResource("2_sag5e")
+region = Rect2(316, 161, 103, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1emli"]
+atlas = ExtResource("2_sag5e")
+region = Rect2(0, 322, 103, 97)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5ir8r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_etctd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lvd8g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f6wvh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mow5i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k3jkh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nxmpg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1emli")
+}],
+"loop": true,
+"name": &"default",
+"speed": 9.0
+}]
+
+[node name="Hearth" type="Area2D"]
+visibility_layer = 2
+collision_layer = 0
+collision_mask = 33
+script = ExtResource("1_2ytlg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_7kr3b")
+
+[node name="Lifetime" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_5ir8r")
+autoplay = "default"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Lifetime" to="." method="_on_lifetime_timeout"]

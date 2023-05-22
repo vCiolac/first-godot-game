@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bcu2fqktc25f2"]
+
+[node name="Portal" type="Area2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(314, 29)

@@ -1,0 +1,60 @@
+[gd_scene load_steps=9 format=3 uid="uid://cho18hq6hg8hk"]
+
+[ext_resource type="Texture2D" uid="uid://c35yoy6icu5nt" path="res://Novo Projeto.png" id="1_7htt3"]
+[ext_resource type="Script" path="res://Characters/poop.gd" id="1_buyf8"]
+[ext_resource type="AudioStream" uid="uid://bxks4hivj5udn" path="res://assets/SFX/poop.wav" id="3_w1fkd"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cwmrj"]
+radius = 4.0
+height = 8.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gc326"]
+atlas = ExtResource("1_7htt3")
+region = Rect2(0, 0, 70, 61)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lyxsv"]
+atlas = ExtResource("1_7htt3")
+region = Rect2(140, 0, 70, 61)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_de7lc"]
+atlas = ExtResource("1_7htt3")
+region = Rect2(70, 0, 70, 61)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8q7gm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gc326")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lyxsv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_de7lc")
+}],
+"loop": false,
+"name": &"default",
+"speed": 8.0
+}]
+
+[node name="Poop" type="Area2D"]
+position = Vector2(109, 57)
+collision_layer = 0
+collision_mask = 3
+script = ExtResource("1_buyf8")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 0)
+shape = SubResource("CapsuleShape2D_cwmrj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.35, 0.35)
+sprite_frames = SubResource("SpriteFrames_8q7gm")
+
+[node name="Poop" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_w1fkd")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

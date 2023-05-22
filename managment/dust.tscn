@@ -1,0 +1,33 @@
+[gd_scene load_steps=7 format=3 uid="uid://vx88wu4vxt8h"]
+
+[ext_resource type="Texture2D" uid="uid://cdra37vek5j6e" path="res://tiny_sword_demo/assets/env/dust.png" id="1_p68eb"]
+
+[sub_resource type="Gradient" id="Gradient_oecaf"]
+offsets = PackedFloat32Array(0, 0.524752, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_15v6h"]
+gradient = SubResource("Gradient_oecaf")
+
+[sub_resource type="Curve" id="Curve_ooget"]
+_data = [Vector2(0.00406504, 0.276074), 0.0, 11.319, 0, 0, Vector2(0.426829, 0.0184048), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_0yrus"]
+curve = SubResource("Curve_ooget")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fewah"]
+emission_shape = 1
+emission_sphere_radius = 10.0
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_curve = SubResource("CurveTexture_0yrus")
+color_ramp = SubResource("GradientTexture1D_15v6h")
+
+[node name="Dust" type="GPUParticles2D"]
+show_behind_parent = true
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_fewah")
+texture = ExtResource("1_p68eb")
