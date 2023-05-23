@@ -1,8 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://cho18hq6hg8hk"]
+[gd_scene load_steps=8 format=3 uid="uid://cho18hq6hg8hk"]
 
 [ext_resource type="Texture2D" uid="uid://c35yoy6icu5nt" path="res://Novo Projeto.png" id="1_7htt3"]
 [ext_resource type="Script" path="res://Characters/poop.gd" id="1_buyf8"]
-[ext_resource type="AudioStream" uid="uid://bxks4hivj5udn" path="res://assets/SFX/poop.wav" id="3_w1fkd"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cwmrj"]
 radius = 4.0
@@ -53,8 +52,10 @@ shape = SubResource("CapsuleShape2D_cwmrj")
 scale = Vector2(0.35, 0.35)
 sprite_frames = SubResource("SpriteFrames_8q7gm")
 
-[node name="Poop" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_w1fkd")
+[node name="life-timeout" type="Timer" parent="."]
+wait_time = 0.3
+autostart = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="life-timeout" to="." method="_on_lifetimeout_timeout"]

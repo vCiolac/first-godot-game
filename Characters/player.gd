@@ -12,7 +12,7 @@ var attack_instance: Node = null
 @export var coins : int = 0
 @export var damage: int = 1
 
-var can_attack: bool = true
+var can_attack = true
 var can_die: bool = false
 
 const AUDIO_TEMPLATE: PackedScene = preload("res://managment/audio_template.tscn")
@@ -146,7 +146,10 @@ func attack_handler():
 			attack_instance = POOP.instantiate()
 			add_child(attack_instance)
 			attack_instance.position = $"Poop-position".position
-	
+			can_attack = false
+			$Timer_attack.start()
+			$Poop.play()
+
 func update_health(value: int) -> void:
 	health -= value
 	transition.player_health = health
@@ -175,3 +178,6 @@ func spawn_sfx(sfx_path: String) -> void:
 	var sfx = AUDIO_TEMPLATE.instantiate()
 	sfx.sfx_to_play = sfx_path
 	add_child(sfx)
+
+func _on_timer_attack_timeout():
+	can_attack = true

@@ -64,6 +64,7 @@ func _physics_process(delta: float) -> void:
 		
 	move_and_slide()
 	animate()
+	update_health_bar()
 
 func spam_area_attack() -> void:
 	var attack_area = ATTACK_AREA.instantiate()
@@ -136,3 +137,19 @@ func spawn_sfx(sfx_path: String) -> void:
 	var sfx = AUDIO_TEMPLATE.instantiate()
 	sfx.sfx_to_play = sfx_path
 	add_child(sfx)
+
+func update_health_bar():
+	var healthbar = $Healthbar
+	healthbar.value = health
+	if health >= 5:
+		healthbar.visible = false
+	else:
+		healthbar.visible = true
+
+func _on_regin_timer_timeout():
+	if health < 5:
+		health = health + 1
+		if health >= 5:
+			health = 5
+	if health <= 0:
+		health = 0

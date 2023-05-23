@@ -75,7 +75,7 @@ func _on_animation_player_animation_finished(anim_name: String) -> void:
 			get_parent().add_child(hearth)
 			if is_on_floor():
 				hearth.global_position = global_position
-				hearth.global_position.y -= 20
+				hearth.global_position.y -= 19.5
 			else:
 				hearth.global_position = global_position
 			queue_free()
