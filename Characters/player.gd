@@ -159,7 +159,6 @@ func attack_handler():
 
 func update_health(value: int) -> void:
 	transition.player_health -= value
-	print("health: ", transition.player_health)
 	get_tree().call_group("level", "update_health", transition.player_health)
 	if animation.current_animation == "hit":
 		return
@@ -171,13 +170,11 @@ func update_health(value: int) -> void:
 	
 func heal_health(value: int) -> void:
 	transition.player_health += value
-	print("health:", transition.player_health)
 	get_tree().call_group("level", "update_health", transition.player_health)
 	$Heal.play()
 	
 func get_coins(value: int) -> void:
 	transition.player_coins += value
-	print("coins: ", transition.player_coins)
 	get_tree().call_group("level", "get_coins", transition.player_coins)
 	$Coin.play()
 	

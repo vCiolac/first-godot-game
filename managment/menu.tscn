@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://bobovb838vji7"]
 
-[ext_resource type="Script" path="res://managment/Menu.gd" id="1_u8cj6"]
+[ext_resource type="Script" path="res://managment/menu.gd" id="1_j78a8"]
 [ext_resource type="Texture2D" uid="uid://bcg0rjrxdhp6u" path="res://assets/Assets/Background_2.png" id="2_lrjxe"]
 [ext_resource type="FontFile" uid="uid://b1n4844phckae" path="res://assets/kurland.ttf" id="2_rocwd"]
 [ext_resource type="Texture2D" uid="uid://ba18wajthx8hk" path="res://assets/Assets/Background_1.png" id="3_jfrl5"]
@@ -108,7 +108,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_u8cj6")
+script = ExtResource("1_j78a8")
 metadata/_edit_vertical_guides_ = []
 
 [node name="Background2" type="Sprite2D" parent="."]

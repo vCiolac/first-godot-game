@@ -2,8 +2,8 @@
 if first_talk == "talking"
 	=> repetir
 if first_talk == ""
-	???: Pruu, pruu...
-	???: Oh, um novo pombinho! [wait=1] Parece que temos mais um para iniciar sua jornada...
+	Pombo: Pruu, pruu...
+	???: Oh, olá pombinho! [wait=1] Parece que temos mais um para iniciar sua jornada...
 	set first_talk = "talking"
 	=> repetir
 if first_talk == "talked"
@@ -19,7 +19,7 @@ if first_talk == "talked"
 		set has_secret = "taked"
 		Rocha: Como recompensa, 5 moedinhas brilhantes pra você!
 	else
-		Rocha: Ficou com alguma duvida?
+		Rocha: Ficou com alguma duvida? Posso lhe contar mais detalhes?
 		- Sim, me conte mais.
 			=> infos
 		- Não
@@ -47,7 +47,7 @@ if  has_jump == "true" and call_bug == ""
 if call_bug == "called"
 	Rocha: Boa! Agora... ouça com atenção, pombo. [speed=0.5]Existe um perigo que está ameaçando todos os mundos. Uma figura maligna conhecida como "Corvissius" está corrompendo e espalhando trevas por toda parte.
 	Rocha: Precisamos que você viaje através dos portais para os diferentes mundos e colete as Plumas de Luz, com elas você será capaz de derrotá-lo!
-	Rocha: Durante sua aventura, explore os cenários, voe pelos céus e descubra segredos ocultos! Também não deixe de coletar as moedas, com elas você poderá fortaceler suas habilidades!
+	Rocha: Durante sua aventura, explore os cenários, voe pelos céus e desvende mistérios escondidos! Também não deixe de coletar as moedas, com elas você poderá fortaceler suas habilidades!
 	Rocha: Posso contar com você?
 	- Sim
 		Rocha:[[ Show de bola! | Belezura! | Tamo junto! ]] Se quiser mais detalhes sobre o jogo, fale novamente comigo.
@@ -84,8 +84,7 @@ Rocha: Me diga, sobre o que você tem dúvida?
 	Rocha: Em breve você vai aprender mais sobre elas e será capaz de utilizá-las com a tecla X.
 - Vida e inimigos
 	Rocha: A sua vida é acumulativa, ou seja, você começa com um máximo de 3, se você estiver com a barra de vida cheia e coletar um coração, sua vida máxima subirá para 4.
-	Rocha: O número ao lado de sua barra de vida é referente à sua vida máxima, enquanto a barra mostra a quantidade atual.
-	Rocha: Se morrer, você voltará para o ultimo checkpoint e retorna com a vida máxima de 3.
+	Rocha:  Os números em sua barra de vida são respectivamente sua vida atual / sua vida máxima. Se você morrer, voltará para o ultimo checkpoint e retorna com a vida máxima de 3.
 	Rocha: Cada inimigo tem uma barra de vida que aparece em cima de sua cabeça quando recebe um ataque, ela continua visível durante todo o tempo em que ele estiver ferido.
 	Rocha: Alguns inimigos tem a capacidade regenerativa, se eles ficarem um tempo sem sofrer dano, irão se curar automaticamente.
 => END

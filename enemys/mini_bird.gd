@@ -5,7 +5,7 @@ var OFFSET: Vector2 = Vector2(6, 9)
 
 var player_ref: CharacterBody2D = null
 @export var move_speed: float = 120.0
-var distance_threshold: float = 14.0
+var distance_threshold: float = 16.0
 
 const AUDIO_TEMPLATE: PackedScene = preload("res://managment/audio_template.tscn")
 @onready var animation: AnimationPlayer = get_node("AnimationPlayer")
@@ -119,3 +119,4 @@ func _on_fly_area_body_exited(_body):
 	move_away = false
 	$DetectionArea.visible = true
 	velocity = Vector2.ZERO
+	

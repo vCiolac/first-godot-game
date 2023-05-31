@@ -8764,7 +8764,7 @@ radius = 7.0
 texture_filter = 1
 position = Vector2(40, -146)
 script = ExtResource("1_ncakb")
-next_transition_scene = "res://managment/level-2.tscn"
+next_transition_scene = "res://managment/level_2.tscn"
 
 [node name="Map" type="Node2D" parent="."]
 
@@ -8871,7 +8871,7 @@ distance = Vector2(0, 80)
 debug = false
 
 [node name="Player" parent="." instance=ExtResource("11_uuxfs")]
-position = Vector2(1, 666)
+position = Vector2(0, 662)
 
 [node name="Decoration" type="Node2D" parent="."]
 position = Vector2(-40, 143)
@@ -9060,7 +9060,7 @@ position = Vector2(-399, 296)
 position = Vector2(-222, -79)
 
 [node name="Beetle4" parent="Enemys" instance=ExtResource("10_5ity0")]
-position = Vector2(665, 138)
+position = Vector2(673, 130)
 
 [node name="miniBird" parent="Enemys" instance=ExtResource("12_sfxsd")]
 position = Vector2(-267, -6)
@@ -9068,9 +9068,6 @@ position = Vector2(-267, -6)
 [node name="miniBird4" parent="Enemys" instance=ExtResource("12_sfxsd")]
 position = Vector2(594, 155)
 slide_on_ceiling = false
-
-[node name="miniBird5" parent="Enemys" instance=ExtResource("12_sfxsd")]
-position = Vector2(2455, -144)
 
 [node name="miniBird2" parent="Enemys" instance=ExtResource("12_sfxsd")]
 position = Vector2(-9, -3)
