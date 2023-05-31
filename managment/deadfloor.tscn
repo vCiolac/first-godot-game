@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=5 format=3 uid="uid://bkp4w7w0xkclu"]
 
 [ext_resource type="Script" path="res://managment/deadfloor.gd" id="1_b1g1q"]
 [ext_resource type="Texture2D" uid="uid://cndvgvrmskc66" path="res://assets/craftpix-net-352322-nature-pixel-art-environment-free-assets-pack/PNG/Tiles/tile14.png" id="2_befam"]
+[ext_resource type="AudioStream" uid="uid://bk6qbjitkwtt" path="res://assets/SFX/deathfloor.wav" id="3_b4j5u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_muc8h"]
 size = Vector2(48, 48)
@@ -17,5 +18,8 @@ texture = ExtResource("2_befam")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_muc8h")
 debug_color = Color(0.960784, 0, 0, 0.419608)
+
+[node name="gameOver" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_b4j5u")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

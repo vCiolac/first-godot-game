@@ -60,6 +60,7 @@ func _physics_process(delta: float) -> void:
 		
 	move_and_slide()
 	animate()
+	update_health_bar()
 
 func spam_area_attack() -> void:
 	var attack_area = ATTACK_AREA.instantiate()
@@ -76,7 +77,9 @@ func animate() -> void:
 		OFFSET.x = 20
 		$Ray_floor.target_position.x = 26
 		
-	if animation.current_animation == "hit":
+	if animation.current_animation == "die":
+		return
+	if animation.current_animation == "hit" or animation.current_animation == "attack":
 		return
 	
 	if velocity.x != 0:
@@ -127,3 +130,11 @@ func spawn_sfx(sfx_path: String) -> void:
 	var sfx = AUDIO_TEMPLATE.instantiate()
 	sfx.sfx_to_play = sfx_path
 	add_child(sfx)
+
+func update_health_bar():
+	var healthbar = $Healthbar
+	healthbar.value = health
+	if health >= 3:
+		healthbar.visible = false
+	else:
+		healthbar.visible = true

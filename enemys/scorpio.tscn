@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bdr02i6n6odp3"]
+[gd_scene load_steps=18 format=3 uid="uid://bdr02i6n6odp3"]
 
 [ext_resource type="Script" path="res://enemys/scorpio.gd" id="1_5uhq6"]
 [ext_resource type="Texture2D" uid="uid://b8rwse05y52qt" path="res://assets/craftpix-net-352322-nature-pixel-art-environment-free-assets-pack/craftpix-781196-free-desert-enemy-sprite-sheets-pixel-art/3 Scorpio/Scorpio_idle.png" id="2_xgwx1"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://blg38qw3ni423" path="res://assets/craftpix-net-352322-nature-pixel-art-environment-free-assets-pack/craftpix-781196-free-desert-enemy-sprite-sheets-pixel-art/3 Scorpio/Scorpio_death.png" id="4_welax"]
 [ext_resource type="Texture2D" uid="uid://1a268qgnkiyj" path="res://assets/craftpix-net-352322-nature-pixel-art-environment-free-assets-pack/craftpix-781196-free-desert-enemy-sprite-sheets-pixel-art/3 Scorpio/Scorpio_hurt.png" id="5_3ijol"]
 [ext_resource type="Texture2D" uid="uid://bpxx7y5xcucg" path="res://assets/craftpix-net-352322-nature-pixel-art-environment-free-assets-pack/craftpix-781196-free-desert-enemy-sprite-sheets-pixel-art/3 Scorpio/Scorpio_walk.png" id="6_cew8v"]
+[ext_resource type="Texture2D" uid="uid://fatk0ro4mmq3" path="res://assets/Assets/enemy-bar.png" id="7_7ncu2"]
+[ext_resource type="Texture2D" uid="uid://dkpx0jiea3fjj" path="res://assets/Assets/enemy-hp.png" id="8_56v3w"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vojm8"]
 radius = 100.0
@@ -64,7 +66,6 @@ tracks/3/keys = {
 [sub_resource type="Animation" id="Animation_dvrs7"]
 resource_name = "attack"
 length = 0.8
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -120,14 +121,25 @@ tracks/4/path = NodePath(".")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0.2, 0.2001),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["res://assets/SFX/emeny-attack.wav"],
+"method": &"spawn_sfx"
+}]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
 "method": &"spam_area_attack"
-}, {
-"args": ["res://assets/SFX/emeny-attack.wav"],
-"method": &"spawn_sfx"
 }]
 }
 
@@ -410,6 +422,22 @@ hframes = 4
 [node name="Ray_floor" type="RayCast2D" parent="."]
 target_position = Vector2(-16, 9)
 
+[node name="Healthbar" type="TextureProgressBar" parent="."]
+modulate = Color(0.886275, 0, 0, 1)
+offset_left = 1.0
+offset_top = -8.0
+offset_right = 171.0
+offset_bottom = 20.0
+scale = Vector2(0.7, 0.7)
+max_value = 5.0
+texture_under = ExtResource("7_7ncu2")
+texture_progress = ExtResource("8_56v3w")
+
+[node name="regin_timer" type="Timer" parent="."]
+wait_time = 16.0
+autostart = true
+
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered" flags=18]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited" flags=18]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished" flags=18]
+[connection signal="timeout" from="regin_timer" to="." method="_on_regin_timer_timeout"]

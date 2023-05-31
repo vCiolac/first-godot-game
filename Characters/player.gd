@@ -8,11 +8,10 @@ var attack_instance: Node = null
 @export var double_jump_velocity : float = -160.0
 @export var triple_jump_velocity : float = -220.0
 
-@export var health : int = 5
-@export var coins : int = 0
 @export var damage: int = 1
 
-var can_attack: bool = true
+var can_attack = true
+var can_move: bool = true
 var can_die: bool = false
 
 const AUDIO_TEMPLATE: PackedScene = preload("res://managment/audio_template.tscn")
@@ -21,6 +20,7 @@ const AUDIO_TEMPLATE: PackedScene = preload("res://managment/audio_template.tscn
 @onready var texture: Sprite2D = get_node("Texture")
 @onready var colli: CollisionShape2D = get_node("CollisionShape2D")
 @onready var colli_fly: CollisionShape2D = get_node("Collision-fly")
+@onready var actionable_finder: Area2D = $Direction/ActionableFinder
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var has_double_jump : bool = false
@@ -30,13 +30,19 @@ var was_in_air : bool = false
 var direction : Vector2 = Vector2.ZERO
 
 func _ready() -> void:
-	if transition.player_health != 0:
-		health = transition.player_health
+	if transition.player_health <= 0:
+		transition.player_health = 3
 		return
-	transition.player_health = health
+
+func _unhandled_input(_event: InputEvent) -> void:
+	if Input.is_action_just_pressed("ui_text_submit"):
+		var actionables = actionable_finder.get_overlapping_areas()
+		if actionables.size() > 0:
+			actionables[0].action()
+			return
 
 func _physics_process(delta):
-	if (can_die):
+	if can_die or can_move == false:
 		return
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -105,14 +111,16 @@ func update_facing_direction():
 		$CollisionShape2D.position.x = -3
 		$"Collision-fly".position.x = -3
 		$"Poop-position".position.x = -4
+		$Direction.rotation = 0
 		$Dust.position.x = -8
 	elif direction.x < 0:
 		texture.flip_h = true
 		$Dust.position.x = 8
+		$Direction.rotation = -160
 		$CollisionShape2D.position.x = 3
 		$"Collision-fly".position.x = 3
 		$"Poop-position".position.x = 4
-			
+
 func jump():
 	if is_on_floor():
 		colli_fly.set_disabled(false)
@@ -136,7 +144,6 @@ func _on_animation_player_animation_finished(anim_name):
 		animation_locked = false
 	match anim_name:
 		'die':
-			transition.player_coins = 0
 			transition.player_health = 0
 			get_tree().reload_current_scene()
 
@@ -146,32 +153,38 @@ func attack_handler():
 			attack_instance = POOP.instantiate()
 			add_child(attack_instance)
 			attack_instance.position = $"Poop-position".position
-	
+			can_attack = false
+			$Timer_attack.start()
+			$Poop.play()
+
 func update_health(value: int) -> void:
-	health -= value
-	transition.player_health = health
-	get_tree().call_group("level", "update_health", health)
+	transition.player_health -= value
+	print("health: ", transition.player_health)
+	get_tree().call_group("level", "update_health", transition.player_health)
 	if animation.current_animation == "hit":
 		return
-	if health <= 0:
+	if transition.player_health <= 0:
 		can_die = true
 		animation.play('die')
 		return
 	animation.play('hit')
 	
 func heal_health(value: int) -> void:
-	health += value
-	transition.player_health = health
-	get_tree().call_group("level", "update_health", health)
+	transition.player_health += value
+	print("health:", transition.player_health)
+	get_tree().call_group("level", "update_health", transition.player_health)
 	$Heal.play()
 	
 func get_coins(value: int) -> void:
-	coins += value
-	transition.player_coins = coins
-	get_tree().call_group("level", "get_coins", coins)
+	transition.player_coins += value
+	print("coins: ", transition.player_coins)
+	get_tree().call_group("level", "get_coins", transition.player_coins)
 	$Coin.play()
 	
 func spawn_sfx(sfx_path: String) -> void:
 	var sfx = AUDIO_TEMPLATE.instantiate()
 	sfx.sfx_to_play = sfx_path
 	add_child(sfx)
+
+func _on_timer_attack_timeout():
+	can_attack = true

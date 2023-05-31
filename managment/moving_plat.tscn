@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://du5ff3ypmu1cy"]
+
+[ext_resource type="Script" path="res://managment/MovingPlat.gd" id="1_2jbrg"]
+[ext_resource type="Texture2D" uid="uid://218ydr7vij4c" path="res://assets/Nature_environment_01.png" id="2_nfpkv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tbxu5"]
+size = Vector2(46, 13)
+
+[node name="MovingPlat" type="AnimatableBody2D"]
+position = Vector2(1482, 560)
+script = ExtResource("1_2jbrg")
+distance = Vector2(-72, 42)
+phase_offset = 0.421
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_nfpkv")
+region_enabled = true
+region_rect = Rect2(400, 338, 48, 14)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_tbxu5")
