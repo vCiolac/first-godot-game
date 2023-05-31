@@ -65,7 +65,6 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_dvrs7"]
 resource_name = "attack"
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -410,7 +409,6 @@ hframes = 4
 
 [node name="Ray_floor" type="RayCast2D" parent="."]
 target_position = Vector2(-16, 9)
-collide_with_areas = true
 
 [node name="Healthbar" type="TextureProgressBar" parent="."]
 modulate = Color(0.886275, 0, 0, 1)
@@ -423,9 +421,6 @@ max_value = 3.0
 texture_under = ExtResource("7_2onke")
 texture_progress = ExtResource("8_kmuv2")
 
-[node name="regin_timer" type="Timer" parent="."]
-
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
-[connection signal="timeout" from="regin_timer" to="." method="_on_regin_timer_timeout"]

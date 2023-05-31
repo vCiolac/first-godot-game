@@ -1,0 +1,177 @@
+[gd_scene load_steps=21 format=3 uid="uid://d4fpavg8rbiny"]
+
+[ext_resource type="Texture2D" uid="uid://bqlb4aw3pvu0b" path="res://assets/sunny-land/spritesheets/eagle-attack.png" id="1_d7g0l"]
+[ext_resource type="Script" path="res://Characters/intro_npc.gd" id="1_safeq"]
+[ext_resource type="Texture2D" uid="uid://duxet062431xj" path="res://assets/dialogues/4-Interrogation Dialog/1-Opening/1.png" id="4_4tdij"]
+[ext_resource type="Texture2D" uid="uid://bb5x4s5u3w0hv" path="res://assets/dialogues/4-Interrogation Dialog/1-Opening/2.png" id="5_xrsmt"]
+[ext_resource type="Texture2D" uid="uid://bu06hiy2hhrk8" path="res://assets/dialogues/4-Interrogation Dialog/1-Opening/3.png" id="6_s6ger"]
+[ext_resource type="PackedScene" uid="uid://bjqv65djgcxmv" path="res://Characters/actionable.tscn" id="7_7pncg"]
+[ext_resource type="Texture2D" uid="uid://ckmm31pmje3hh" path="res://assets/dialogues/4-Interrogation Dialog/1-Opening/4.png" id="7_owj4p"]
+[ext_resource type="Resource" uid="uid://bup5spk8ygeru" path="res://managment/dialogues/intro_npc.dialogue" id="8_n56ld"]
+[ext_resource type="Texture2D" uid="uid://fbc5wnabq0fn" path="res://assets/dialogues/4-Interrogation Dialog/textbox.png" id="9_d3ifs"]
+[ext_resource type="FontFile" uid="uid://by7pvhxc65b1l" path="res://assets/dialogues/Bittypix Monospace.woff" id="10_o1q8t"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6tymk"]
+radius = 15.0333
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j1kua"]
+atlas = ExtResource("1_d7g0l")
+region = Rect2(0, 0, 40, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kekn5"]
+atlas = ExtResource("1_d7g0l")
+region = Rect2(40, 0, 40, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jn5s4"]
+atlas = ExtResource("1_d7g0l")
+region = Rect2(80, 0, 40, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6d8qh"]
+atlas = ExtResource("1_d7g0l")
+region = Rect2(120, 0, 40, 41)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3j7gw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j1kua")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kekn5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jn5s4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6d8qh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_mtl0l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AskBox:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_4tdij")]
+}
+
+[sub_resource type="Animation" id="Animation_78exx"]
+resource_name = "idle"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AskBox:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("4_4tdij"), ExtResource("5_xrsmt"), ExtResource("6_s6ger"), ExtResource("7_owj4p")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vhi5g"]
+_data = {
+"RESET": SubResource("Animation_mtl0l"),
+"idle": SubResource("Animation_78exx")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_md581"]
+radius = 23.55
+
+[node name="IntroNPC" type="CharacterBody2D"]
+position = Vector2(242, 228)
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_safeq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_6tymk")
+
+[node name="Hawk" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_3j7gw")
+autoplay = "default"
+flip_h = true
+
+[node name="AskBox" type="Sprite2D" parent="."]
+position = Vector2(27, -4)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("4_4tdij")
+
+[node name="AskBox_Animation" type="AnimationPlayer" parent="."]
+autoplay = "idle"
+libraries = {
+"": SubResource("AnimationLibrary_vhi5g")
+}
+
+[node name="Actionable" parent="." instance=ExtResource("7_7pncg")]
+collision_mask = 48
+dialogue_resource = ExtResource("8_n56ld")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Actionable"]
+position = Vector2(22, 14)
+shape = SubResource("CircleShape2D_md581")
+
+[node name="Ballon" type="NinePatchRect" parent="."]
+visible = false
+offset_left = 18.0
+offset_top = -30.0
+offset_right = 79.0
+offset_bottom = -4.0
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("9_d3ifs")
+region_rect = Rect2(0, 0, 20, 22)
+patch_margin_left = 7
+patch_margin_top = 7
+patch_margin_right = 7
+patch_margin_bottom = 10
+
+[node name="Label" type="Label" parent="Ballon"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 276.0
+offset_bottom = 48.0
+scale = Vector2(0.2, 0.26)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.745098, 0.647059, 0.647059, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_outline_size = 4
+theme_override_fonts/font = ExtResource("10_o1q8t")
+theme_override_font_sizes/font_size = 16
+text = "Pressione Enter
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Ballon"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 10.0
+offset_right = 340.0
+offset_bottom = 54.0
+scale = Vector2(0.16, 0.22)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.745098, 0.647059, 0.647059, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_outline_size = 4
+theme_override_fonts/font = ExtResource("10_o1q8t")
+theme_override_font_sizes/font_size = 16
+text = "para interagir comigo"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="body_entered" from="Actionable" to="." method="_on_actionable_body_entered"]
+[connection signal="body_exited" from="Actionable" to="." method="_on_actionable_body_exited"]

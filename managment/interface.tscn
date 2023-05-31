@@ -20,20 +20,19 @@ shadow_color = Color(0, 0, 0, 0.662745)
 shadow_offset = Vector2(3, 3)
 
 [node name="Interface" type="CanvasLayer"]
-scale = Vector2(0.8, 0.8)
-transform = Transform2D(0.8, 0, 0, 0.8, 0, 0)
 
-[node name="Hp_Bar" type="TextureProgressBar" parent="."]
-offset_left = 105.0
+[node name="HpBar" type="TextureProgressBar" parent="."]
+offset_left = 105.4
 offset_top = 5.0
-offset_right = 157.0
+offset_right = 157.4
 offset_bottom = 12.0
-scale = Vector2(3.9, 3.84)
-max_value = 5.0
+scale = Vector2(4.2, 3.84)
+max_value = 3.0
+value = 3.0
 texture_under = ExtResource("2_t5fyh")
 texture_progress = ExtResource("4_e4l2f")
 
-[node name="Mp_Bar" type="TextureProgressBar" parent="."]
+[node name="MpBar" type="TextureProgressBar" parent="."]
 offset_left = 106.0
 offset_top = 28.0
 offset_right = 158.0
@@ -57,6 +56,23 @@ offset_top = 59.0
 offset_right = 236.0
 offset_bottom = 92.0
 text = "000000"
+label_settings = SubResource("LabelSettings_vcv1k")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="HpValue" type="Label" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 204.0
+offset_top = 12.0
+offset_right = -895.0
+offset_bottom = -603.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.4, 0.4)
+size_flags_horizontal = 4
+text = "0 / 3"
 label_settings = SubResource("LabelSettings_vcv1k")
 horizontal_alignment = 2
 vertical_alignment = 1

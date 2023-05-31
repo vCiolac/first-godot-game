@@ -77,7 +77,9 @@ func animate() -> void:
 		OFFSET.x = 20
 		$Ray_floor.target_position.x = 26
 		
-	if animation.current_animation == "hit":
+	if animation.current_animation == "die":
+		return
+	if animation.current_animation == "hit" or animation.current_animation == "attack":
 		return
 	
 	if velocity.x != 0:
@@ -136,11 +138,3 @@ func update_health_bar():
 		healthbar.visible = false
 	else:
 		healthbar.visible = true
-
-func _on_regin_timer_timeout():
-	if health < 3:
-		health = health + 1
-		if health >= 3:
-			health = 3
-	if health <= 0:
-		health = 0

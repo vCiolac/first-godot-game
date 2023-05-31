@@ -14,7 +14,6 @@ const AUDIO_TEMPLATE: PackedScene = preload("res://managment/audio_template.tscn
 @onready var colli: CollisionShape2D = get_node("Collision")
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-
 @export var health: int = 5
 var can_die: bool = false
 
@@ -22,7 +21,6 @@ var walk_distance: float = 100.0
 var walk_speed: float = 10.0
 var walking_right: bool = true
 var walk_amount: float = 0.0
-
 
 func _physics_process(delta: float) -> void:
 	if can_die:
@@ -83,7 +81,9 @@ func animate() -> void:
 		$Ray_floor.target_position.x = 30
 		OFFSET.x = 20
 		
-	if animation.current_animation == "hit":
+	if animation.current_animation == "die":
+		return
+	if animation.current_animation == "hit" or animation.current_animation == "attack":
 		return
 	
 	if velocity.x != 0:
@@ -113,7 +113,9 @@ func _on_animation_player_animation_finished(anim_name: String) -> void:
 		"die":
 			var coin = COIN.instantiate()
 			get_parent().add_child(coin)
+			var lifetime_timer = coin.get_node("Lifetime")
 			coin.global_position = global_position
+			lifetime_timer.start()
 			queue_free()
 
 func walk(delta: float) -> void:

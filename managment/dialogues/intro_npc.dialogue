@@ -1,0 +1,91 @@
+~ start
+if first_talk == "talking"
+	=> repetir
+if first_talk == ""
+	???: Pruu, pruu...
+	???: Oh, um novo pombinho! [wait=1] Parece que temos mais um para iniciar sua jornada...
+	set first_talk = "talking"
+	=> repetir
+if first_talk == "talked"
+	if has_secret == "taked"
+		Rocha: Ainda tem alguma duvida?
+		- Não
+			Rocha: Então ta esperando o que!? O universo está em perigo!
+			=> END
+		- Sim
+			=> infos
+	if has_secret == "has"
+		Rocha: Ah! Eu estava procurando por isso... Obrigado!
+		set has_secret = "taked"
+		Rocha: Como recompensa, 5 moedinhas brilhantes pra você!
+	else
+		Rocha: Ficou com alguma duvida?
+		- Sim, me conte mais.
+			=> infos
+		- Não
+			Rocha: Então suba as plataformas e procure o próximo portal.
+=> END
+~ repetir
+if has_walked == ""
+	Rocha: Bem-vindo! Eu me chamo Rocha, e estou aqui para lhe explicar um pouco desse universo.
+	set has_walked = "waiting"
+	Rocha: Vamos começar com o básico. Para se movimentar, você pode usar as setas do teclado ou as teclas WASD.
+if has_walked == "true" and has_jump == ""
+	set  has_jump = "go_jump"
+	Rocha: Ótimo! Agora, pressione a barra de espaço para bater suas asas e ganhar impulso. O voo é uma habilidade essencial para explorar os cenários, alcançar lugares altos e evitar obstáculos.
+	Rocha: Mas lembre-se, estando no chão você só pode dar até três saltos antes de precisar pousar novamente. E caso já esta no ar, são apenas 2.
+if has_walked == "waiting":
+	Rocha: Vamos, use as setas do teclado ou as teclas WASD para se mover!
+if  has_jump == "go_jump"
+	Rocha: Estou esperando você treinar seu voo!
+if  has_jump == "true" and call_bug == ""
+	Rocha: Beleza! Agora, a melhor parte é a arma secreta dos pombos... Seu cocô! Sim!! Para atacar seus inimigos, durante o voo, você pode usar o botão esquerdo do mouse ou a tecla Z para lançar seus dejetos.
+	Rocha: Irei invocar dois besouros para você testar sua mira, eles são inofensivos e fogem de você, ao serem derrotados eles deixam um coração para aumentar sua vida!
+	set call_bug = "call"
+	Rocha: Volte a falar comigo depois disso.
+	=> END
+if call_bug == "called"
+	Rocha: Boa! Agora... ouça com atenção, pombo. [speed=0.5]Existe um perigo que está ameaçando todos os mundos. Uma figura maligna conhecida como "Corvissius" está corrompendo e espalhando trevas por toda parte.
+	Rocha: Precisamos que você viaje através dos portais para os diferentes mundos e colete as Plumas de Luz, com elas você será capaz de derrotá-lo!
+	Rocha: Durante sua aventura, explore os cenários, voe pelos céus e descubra segredos ocultos! Também não deixe de coletar as moedas, com elas você poderá fortaceler suas habilidades!
+	Rocha: Posso contar com você?
+	- Sim
+		Rocha:[[ Show de bola! | Belezura! | Tamo junto! ]] Se quiser mais detalhes sobre o jogo, fale novamente comigo.
+		set first_talk = "talked"
+	- Não
+		Rocha: Não? ha ha.. Então lê novamente o que eu falei e repensa... pruu, pruu
+		=> repetir
+	
+=> END
+
+~ pick_secret
+if has_secret == ""
+	Pombo: Parece que encontrei alguma coisa.
+	Pombo: Que tal mostrar isso para o Rocha?
+	set has_secret = "has"
+else:
+	Pombo: Não há mais nada aqui.
+	=> END
+
+=> END
+
+~ infos
+Rocha: Me diga, sobre o que você tem dúvida?
+- Comandos e ataque
+	Rocha: Bom, acredito que você já deve ser capaz de se mover e voar. Para atacar, use o botão esquerdo do mouse ou a tecla Z.
+	Rocha: Seus projetéis não tem mira, eles irão seguir as leis da física, sempre para baixo e no sentido do seu movimento.
+	Rocha: Você só é capaz de lançar outro cocô quando o anterior atingir alguma coisa ou exceder seu tempo. Inicialmente de 0.3 segundos.
+	Rocha: Para interagir com objetos e NPC's, use a tecla "Enter", ela será bastante útil quando você encontrar segredos pelo mapa.
+	Rocha: Durante um dialogo com um NPC, se você não quiser esperar o texto carregar sozinho, basta apertar a tecla "Esc".
+- Moedas e habilidades
+	Rocha: As moedas são necessárias para você aprimorar as suas habilidades, elas podem cair quando inimigos são derrotados. Junte o máximo que você puder.
+	Rocha: Durante sua jornada você certamente passará por algum vilarejo, e lá você será capaz de trocar elas por upgrades passivos e/ou habilidades ativas.
+	Rocha: As habilidades são benefícios mágicos ou ataques poderosos que você poderá utilizar somente um por vez. Escolhendo o melhor para cada ocasião.
+	Rocha: Em breve você vai aprender mais sobre elas e será capaz de utilizá-las com a tecla X.
+- Vida e inimigos
+	Rocha: A sua vida é acumulativa, ou seja, você começa com um máximo de 3, se você estiver com a barra de vida cheia e coletar um coração, sua vida máxima subirá para 4.
+	Rocha: O número ao lado de sua barra de vida é referente à sua vida máxima, enquanto a barra mostra a quantidade atual.
+	Rocha: Se morrer, você voltará para o ultimo checkpoint e retorna com a vida máxima de 3.
+	Rocha: Cada inimigo tem uma barra de vida que aparece em cima de sua cabeça quando recebe um ataque, ela continua visível durante todo o tempo em que ele estiver ferido.
+	Rocha: Alguns inimigos tem a capacidade regenerativa, se eles ficarem um tempo sem sofrer dano, irão se curar automaticamente.
+=> END

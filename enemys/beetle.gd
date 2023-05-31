@@ -73,11 +73,8 @@ func _on_animation_player_animation_finished(anim_name: String) -> void:
 		"die":
 			var hearth = LIFE.instantiate()
 			get_parent().add_child(hearth)
-			if is_on_floor():
-				hearth.global_position = global_position
-				hearth.global_position.y -= 19.5
-			else:
-				hearth.global_position = global_position
+			hearth.global_position = global_position
+			hearth.global_position.y -= 22
 			queue_free()
 			
 func walk(delta: float) -> void:

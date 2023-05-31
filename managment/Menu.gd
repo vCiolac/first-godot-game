@@ -8,7 +8,7 @@ func _ready():
 func on_button_pressed(imme: String) -> void:
 	match imme:
 		"Novo Jogo":
-			transition.scene_path = 'res://managment/level1.tscn'
+			transition.scene_path = 'res://managment/intro_scene.tscn'
 			transition.fade_in()
 		"Sair":
 			transition.can_quit = true

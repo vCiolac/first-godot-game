@@ -4,7 +4,7 @@ extends CanvasLayer
 var scene_path: String = ""
 var can_quit: bool = false
 
-var player_health: int = 0
+var player_health: int = 3
 var player_coins: int = 0
 
 func fade_in(opt: bool = false) -> void:

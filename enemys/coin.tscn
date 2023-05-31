@@ -82,7 +82,6 @@ shape = SubResource("CircleShape2D_7kr3b")
 [node name="Lifetime" type="Timer" parent="."]
 wait_time = 12.0
 one_shot = true
-autostart = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.25, 0.25)
