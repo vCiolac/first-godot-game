@@ -5,14 +5,14 @@ var OFFSET: Vector2 = Vector2(6, 9)
 
 var player_ref: CharacterBody2D = null
 @export var move_speed: float = 120.0
-var distance_threshold: float = 14.0
+var distance_threshold: float = 16.0
 
 const AUDIO_TEMPLATE: PackedScene = preload("res://managment/audio_template.tscn")
 @onready var animation: AnimationPlayer = get_node("AnimationPlayer")
 @onready var texture: Sprite2D = get_node("Texture")
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-@export var health: int = 2
+@export var health: int = 1
 var can_die: bool = false
 
 var move_away: bool = true
@@ -103,7 +103,7 @@ func spawn_sfx(sfx_path: String) -> void:
 func update_health_bar():
 	var healthbar = $Healthbar
 	healthbar.value = health
-	if health >= 2:
+	if health >= 1:
 		healthbar.visible = false
 	else:
 		healthbar.visible = true
@@ -119,3 +119,4 @@ func _on_fly_area_body_exited(_body):
 	move_away = false
 	$DetectionArea.visible = true
 	velocity = Vector2.ZERO
+	

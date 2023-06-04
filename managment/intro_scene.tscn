@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cbp876d1yh73v"]
+[gd_scene load_steps=25 format=3 uid="uid://cbp876d1yh73v"]
 
 [ext_resource type="Texture2D" uid="uid://bpf75pie12q00" path="res://assets/rockypress/PNG/near.png" id="1_7ciso"]
 [ext_resource type="Script" path="res://managment/intro_scene.gd" id="1_sx6xr"]
@@ -9,7 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://cfluwo1v5dahd" path="res://assets/rockypress/PNG/Props/crystal-2.png" id="5_8j7oh"]
 [ext_resource type="Texture2D" uid="uid://codhfjcgh3ht4" path="res://assets/rockypress/PNG/Props/plant-2.png" id="6_7bwdg"]
 [ext_resource type="Texture2D" uid="uid://dbflpr3pd33ln" path="res://assets/rockypress/PNG/Props/plant-1.png" id="7_jyn5v"]
-[ext_resource type="PackedScene" uid="uid://bnssr6d5fe4ja" path="res://Characters/player.tscn" id="8_v45al"]
 [ext_resource type="PackedScene" uid="uid://bcu2fqktc25f2" path="res://managment/portal.tscn" id="11_5muxc"]
 [ext_resource type="PackedScene" uid="uid://cyak5axceban7" path="res://managment/interface.tscn" id="12_bjhbn"]
 [ext_resource type="PackedScene" uid="uid://d4fpavg8rbiny" path="res://Characters/intro_npc.tscn" id="13_c3m4p"]
@@ -17,6 +16,8 @@
 [ext_resource type="PackedScene" uid="uid://bjqv65djgcxmv" path="res://Characters/actionable.tscn" id="15_2p66y"]
 [ext_resource type="Resource" uid="uid://bup5spk8ygeru" path="res://managment/dialogues/intro_npc.dialogue" id="16_4whv6"]
 [ext_resource type="AudioStream" uid="uid://wsijr22kptpg" path="res://assets/SFX/summon.wav" id="17_c6b2r"]
+[ext_resource type="PackedScene" uid="uid://bnssr6d5fe4ja" path="res://Characters/player.tscn" id="17_qn312"]
+[ext_resource type="AudioStream" uid="uid://clxm857vrjxdo" path="res://assets/SFX/Goblins_Dance_(Battle).wav" id="18_707jr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1oaed"]
 texture = ExtResource("2_e66qx")
@@ -377,9 +378,6 @@ position = Vector2(930, 623)
 rotation = 0.0349066
 texture = ExtResource("7_jyn5v")
 
-[node name="Player" parent="." instance=ExtResource("8_v45al")]
-position = Vector2(86, 524)
-
 [node name="Portal" parent="." instance=ExtResource("11_5muxc")]
 position = Vector2(623, 248)
 rotation = 1.5708
@@ -387,7 +385,7 @@ rotation = 1.5708
 [node name="Interface" parent="." instance=ExtResource("12_bjhbn")]
 
 [node name="IntroNPC" parent="." instance=ExtResource("13_c3m4p")]
-position = Vector2(17, 508)
+position = Vector2(32, 510)
 collision_mask = 32
 
 [node name="Spike" parent="." instance=ExtResource("14_nlghd")]
@@ -404,6 +402,7 @@ scale = Vector2(4, 0.1)
 
 [node name="Actionable" parent="." instance=ExtResource("15_2p66y")]
 position = Vector2(428, -18)
+collision_layer = 144
 dialogue_resource = ExtResource("16_4whv6")
 dialogue_start = "pick_secret"
 
@@ -413,5 +412,12 @@ shape = SubResource("CircleShape2D_ccx2o")
 
 [node name="summon" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("17_c6b2r")
+
+[node name="Player" parent="." instance=ExtResource("17_qn312")]
+position = Vector2(93, 523)
+
+[node name="BgAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("18_707jr")
+autoplay = true
 
 [connection signal="body_entered" from="Portal" to="." method="_on_portal_body_entered"]

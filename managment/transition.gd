@@ -3,6 +3,7 @@ extends CanvasLayer
 @onready var animation: AnimationPlayer = get_node('AnimationPlayer')
 var scene_path: String = ""
 var can_quit: bool = false
+var first_boss_apears: bool = false
 
 var player_health: int = 3
 var player_coins: int = 0

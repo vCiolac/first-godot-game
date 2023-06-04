@@ -210,3 +210,10 @@ func _on_balloon_gui_input(event: InputEvent) -> void:
 
 func _on_margin_resized() -> void:
 	handle_resize()
+
+
+func _on_dialogue_label_spoke(letter: String, letter_index: int, speed: float):
+	if not letter in [" ", "."]:
+		var actual_speed: int = 6 if speed >= 1 else 2
+		if letter_index % actual_speed == 0:
+			$Balloon/Margin/VBox/DialogueLabel/TextSound.play()

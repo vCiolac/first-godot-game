@@ -5,6 +5,8 @@ signal spoke(letter: String, letter_index: int, speed: float)
 signal paused_typing(duration: float)
 signal finished_typing()
 
+@onready var text_sound: AudioStreamPlayer = $TextSound
+var time_accumulator: float = 0.0
 
 ## The action to press to skip typing
 @export var skip_action: String = "ui_cancel"
@@ -89,6 +91,7 @@ func type_next(delta: float, seconds_needed: float) -> void:
 	if last_mutation_index != visible_characters:
 		last_mutation_index = visible_characters
 		dialogue_line.mutate_inline_mutations(visible_characters)
+		
 
 	var additional_waiting_seconds: float = dialogue_line.get_pause(visible_characters)
 

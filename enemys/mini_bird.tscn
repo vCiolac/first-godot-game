@@ -511,6 +511,7 @@ radius = 100.0
 radius = 60.0
 
 [node name="MiniBird" type="CharacterBody2D"]
+scale = Vector2(1.2, 1.2)
 collision_layer = 2
 script = ExtResource("1_0qi22")
 
@@ -558,7 +559,7 @@ texture_under = ExtResource("3_aarho")
 texture_progress = ExtResource("4_vu136")
 
 [node name="RayCast" type="RayCast2D" parent="."]
-target_position = Vector2(0, 8)
+target_position = Vector2(0, 7)
 
 [node name="Timer" type="Timer" parent="."]
 

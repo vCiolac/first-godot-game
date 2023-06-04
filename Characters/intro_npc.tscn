@@ -89,7 +89,7 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_md581"]
-radius = 23.55
+radius = 36.35
 
 [node name="IntroNPC" type="CharacterBody2D"]
 position = Vector2(242, 228)
@@ -101,6 +101,7 @@ script = ExtResource("1_safeq")
 shape = SubResource("CircleShape2D_6tymk")
 
 [node name="Hawk" type="AnimatedSprite2D" parent="."]
+self_modulate = Color(0.654902, 0.929412, 0.686275, 1)
 sprite_frames = SubResource("SpriteFrames_3j7gw")
 autoplay = "default"
 flip_h = true
@@ -121,11 +122,10 @@ collision_mask = 48
 dialogue_resource = ExtResource("8_n56ld")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Actionable"]
-position = Vector2(22, 14)
+position = Vector2(15, 14)
 shape = SubResource("CircleShape2D_md581")
 
 [node name="Ballon" type="NinePatchRect" parent="."]
-visible = false
 offset_left = 18.0
 offset_top = -30.0
 offset_right = 79.0
@@ -158,18 +158,18 @@ vertical_alignment = 1
 
 [node name="Label2" type="Label" parent="Ballon"]
 layout_mode = 0
-offset_left = 4.0
-offset_top = 10.0
-offset_right = 340.0
-offset_bottom = 54.0
-scale = Vector2(0.16, 0.22)
+offset_left = 3.53845
+offset_top = 12.2308
+offset_right = 318.538
+offset_bottom = 40.2308
+scale = Vector2(0.18, 0.248)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0.745098, 0.647059, 0.647059, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_outline_size = 4
 theme_override_fonts/font = ExtResource("10_o1q8t")
 theme_override_font_sizes/font_size = 16
-text = "para interagir comigo"
+text = "para interagir "
 horizontal_alignment = 1
 vertical_alignment = 1
 

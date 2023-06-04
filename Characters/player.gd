@@ -44,6 +44,7 @@ func _unhandled_input(_event: InputEvent) -> void:
 func _physics_process(delta):
 	if can_die or can_move == false:
 		return
+		
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	direction = Input.get_vector("left", "right", "up", "down")
@@ -89,6 +90,8 @@ func move(delta):
 	update_facing_direction()
 	
 func update_animation():
+	if can_move == false:
+		return
 	if animation.current_animation == "hit":
 		return
 	if is_on_floor():
@@ -159,7 +162,6 @@ func attack_handler():
 
 func update_health(value: int) -> void:
 	transition.player_health -= value
-	print("health: ", transition.player_health)
 	get_tree().call_group("level", "update_health", transition.player_health)
 	if animation.current_animation == "hit":
 		return
@@ -171,13 +173,11 @@ func update_health(value: int) -> void:
 	
 func heal_health(value: int) -> void:
 	transition.player_health += value
-	print("health:", transition.player_health)
 	get_tree().call_group("level", "update_health", transition.player_health)
 	$Heal.play()
 	
 func get_coins(value: int) -> void:
 	transition.player_coins += value
-	print("coins: ", transition.player_coins)
 	get_tree().call_group("level", "get_coins", transition.player_coins)
 	$Coin.play()
 	
@@ -188,3 +188,12 @@ func spawn_sfx(sfx_path: String) -> void:
 
 func _on_timer_attack_timeout():
 	can_attack = true
+
+func _on_instinct_area_entered(_area):
+	print("Eu posso sentir que tem algo escondido aqui por perto")
+
+func can_i_move(p: bool) -> void:
+	if p:
+		can_move = true
+	else:
+		can_move = false
