@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://73jm5qjy52vq"]
+[gd_scene load_steps=7 format=3 uid="uid://73jm5qjy52vq"]
 
 [ext_resource type="Script" path="res://managment/balloon.gd" id="1_4u26j"]
 [ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="2_a8ve6"]
 [ext_resource type="Texture2D" uid="uid://c1nyre8y5owyt" path="res://assets/Assets/board.png" id="2_kfiww"]
+[ext_resource type="AudioStream" uid="uid://cwgrijbixd604" path="res://assets/SFX/blop.wav" id="4_32am8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5d24i"]
 content_margin_left = 40.0
@@ -59,6 +60,9 @@ layout_mode = 2
 theme_override_font_sizes/normal_font_size = 16
 text = "Dialogue"
 
+[node name="TextSound" type="AudioStreamPlayer" parent="Balloon/Margin/VBox/DialogueLabel"]
+stream = ExtResource("4_32am8")
+
 [node name="Responses" type="VBoxContainer" parent="Balloon/Margin/VBox"]
 layout_mode = 2
 theme_override_constants/separation = 2
@@ -79,3 +83,4 @@ hint_underlined = false
 
 [connection signal="gui_input" from="Balloon" to="." method="_on_balloon_gui_input"]
 [connection signal="resized" from="Balloon/Margin" to="." method="_on_margin_resized"]
+[connection signal="spoke" from="Balloon/Margin/VBox/DialogueLabel" to="." method="_on_dialogue_label_spoke"]

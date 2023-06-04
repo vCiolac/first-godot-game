@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cj8uhop616m8q"
+path="res://.godot/imported/Rain Sound.wav-289b05a1ae537c66681b35122ec6fb8a.sample"
+
+[deps]
+
+source_file="res://assets/SFX/Rain Sound.wav"
+dest_files=["res://.godot/imported/Rain Sound.wav-289b05a1ae537c66681b35122ec6fb8a.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=2
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

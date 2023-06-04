@@ -35,17 +35,17 @@ func _on_open_portal_animation_finished():
 	$Player.position = Vector2(1, 652)
 	$openPortal.queue_free()
 
-
-func _on_teleport_body_entered(body):
-	if body.is_in_group("Player"):
-		$Player.visible = false
-		$Player.position = Vector2(3070, 246)
-		transition.scene_path = next_transition_scene
-		transition.fade_in(true)
-
 func _on_area_2d_body_entered(body):
 	if body.is_in_group("Player"):
 		$"False-wall".visible = false
 
 func _on_area_2d_body_exited(_body):
 	$"False-wall".visible = true
+
+func _on_portal_body_entered(body):
+	if body.is_in_group("Player"):
+		$Portal/AnimationPlayer.play("closing")
+		$Player.visible = false
+		$Player.position = Vector2(3070, 246)
+		transition.scene_path = next_transition_scene
+		transition.fade_in(true)

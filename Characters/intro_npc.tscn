@@ -89,7 +89,7 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_md581"]
-radius = 23.55
+radius = 36.35
 
 [node name="IntroNPC" type="CharacterBody2D"]
 position = Vector2(242, 228)
@@ -101,6 +101,7 @@ script = ExtResource("1_safeq")
 shape = SubResource("CircleShape2D_6tymk")
 
 [node name="Hawk" type="AnimatedSprite2D" parent="."]
+self_modulate = Color(0.654902, 0.929412, 0.686275, 1)
 sprite_frames = SubResource("SpriteFrames_3j7gw")
 autoplay = "default"
 flip_h = true
@@ -121,7 +122,7 @@ collision_mask = 48
 dialogue_resource = ExtResource("8_n56ld")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Actionable"]
-position = Vector2(22, 14)
+position = Vector2(15, 14)
 shape = SubResource("CircleShape2D_md581")
 
 [node name="Ballon" type="NinePatchRect" parent="."]

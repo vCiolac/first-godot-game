@@ -12,7 +12,7 @@ const AUDIO_TEMPLATE: PackedScene = preload("res://managment/audio_template.tscn
 @onready var texture: Sprite2D = get_node("Texture")
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-@export var health: int = 2
+@export var health: int = 1
 var can_die: bool = false
 
 var move_away: bool = true
@@ -103,7 +103,7 @@ func spawn_sfx(sfx_path: String) -> void:
 func update_health_bar():
 	var healthbar = $Healthbar
 	healthbar.value = health
-	if health >= 2:
+	if health >= 1:
 		healthbar.visible = false
 	else:
 		healthbar.visible = true

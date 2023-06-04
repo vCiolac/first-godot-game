@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://bobovb838vji7"]
+[gd_scene load_steps=11 format=3 uid="uid://bobovb838vji7"]
 
 [ext_resource type="Script" path="res://managment/menu.gd" id="1_j78a8"]
 [ext_resource type="Texture2D" uid="uid://bcg0rjrxdhp6u" path="res://assets/Assets/Background_2.png" id="2_lrjxe"]
 [ext_resource type="FontFile" uid="uid://b1n4844phckae" path="res://assets/kurland.ttf" id="2_rocwd"]
 [ext_resource type="Texture2D" uid="uid://ba18wajthx8hk" path="res://assets/Assets/Background_1.png" id="3_jfrl5"]
 [ext_resource type="Theme" uid="uid://i3eqmu76mmkf" path="res://managment/dialogues/gui.tres" id="5_la5ct"]
+[ext_resource type="AudioStream" uid="uid://ugulcfvdiiwk" path="res://assets/SFX/menu.wav" id="6_sh33k"]
 
 [sub_resource type="Animation" id="Animation_8g178"]
 length = 0.001
@@ -138,7 +139,7 @@ offset_top = 24.0
 offset_right = 212.5
 offset_bottom = 86.0
 grow_horizontal = 2
-text = "Pigeon Adventure"
+text = "Penas do Destino"
 label_settings = SubResource("LabelSettings_l6jr8")
 horizontal_alignment = 1
 
@@ -170,3 +171,7 @@ theme = ExtResource("5_la5ct")
 theme_override_fonts/font = ExtResource("2_rocwd")
 theme_override_font_sizes/font_size = 16
 text = "Sair"
+
+[node name="BgAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_sh33k")
+autoplay = true
