@@ -61,4 +61,4 @@ func _on_portal_body_entered(body):
 		$Player.position = $Portal.position
 		$Portal/AnimationPlayer.play("closing")
 		transition.scene_path = next_transition_scene
-		transition.fade_in(true)
+		transition.fade_in()

@@ -9542,9 +9542,9 @@ collision_mask = 32
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Apple/Area2D"]
 shape = SubResource("CircleShape2D_ho886")
 
-[node name="BgAudio" type="AudioStreamPlayer2D" parent="."]
+[node name="BgAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("28_piefh")
-volume_db = 3.0
+volume_db = 2.0
 autoplay = true
 
 [node name="Portal" parent="." instance=ExtResource("29_mccsp")]

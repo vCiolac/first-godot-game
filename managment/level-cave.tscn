@@ -2939,7 +2939,8 @@ animations = [{
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_4bn3k")
-next_transition_scene = "res://managment/level-2.tscn"
+next_transition_scene = "res://managment/level-cave.tscn"
+current_level_scene = "res://managment/level-cave.tscn"
 
 [node name="Maps" type="Node2D" parent="."]
 

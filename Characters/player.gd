@@ -3,12 +3,10 @@ extends CharacterBody2D
 const POOP := preload("res://Characters/poop.tscn")
 var attack_instance: Node = null
 
-@export var speed : float = 150.0
-@export var jump_velocity : float = -120.0
-@export var double_jump_velocity : float = -160.0
-@export var triple_jump_velocity : float = -220.0
-
-@export var damage: int = 1
+var speed = save.player_speed
+var jump_velocity = save.player_jump_velocity
+var double_jump_velocity = save.player_double_jump_velocity
+var triple_jump_velocity = save.player_triple_jump_velocity
 
 var can_attack = true
 var can_move: bool = true
@@ -21,6 +19,7 @@ const AUDIO_TEMPLATE: PackedScene = preload("res://managment/audio_template.tscn
 @onready var colli: CollisionShape2D = get_node("CollisionShape2D")
 @onready var colli_fly: CollisionShape2D = get_node("Collision-fly")
 @onready var actionable_finder: Area2D = $Direction/ActionableFinder
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var has_double_jump : bool = false
@@ -190,7 +189,10 @@ func _on_timer_attack_timeout():
 	can_attack = true
 
 func _on_instinct_area_entered(_area):
-	print("Eu posso sentir que tem algo escondido aqui por perto")
+	transition.instinct = true
+
+func _on_instinct_area_exited(_area):
+	transition.instinct = false
 
 func can_i_move(p: bool) -> void:
 	if p:

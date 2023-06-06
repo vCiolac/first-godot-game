@@ -39,7 +39,7 @@ if has_walked == "waiting":
 if  has_jump == "go_jump"
 	Rocha: Estou esperando você treinar seu voo!
 if  has_jump == "true" and call_bug == ""
-	Rocha: Beleza! Agora, a melhor parte é a arma secreta dos pombos... Seu cocô! Sim!! Para atacar seus inimigos, durante o voo, você pode usar o botão esquerdo do mouse ou a tecla Z para lançar seus dejetos.
+	Rocha: Beleza! Agora, a melhor parte é a arma secreta dos pombos... Seu cocô! Sim!! Para atacar seus inimigos, durante o voo, você pode usar o botão esquerdo do mouse, a tecla Z ou a tecla 0 para lançar seus dejetos.
 	Rocha: Irei invocar dois besouros para você testar sua mira, eles são inofensivos e fogem de você, ao serem derrotados eles deixam um coração para aumentar sua vida!
 	set call_bug = "call"
 	Rocha: Volte a falar comigo depois disso.
@@ -79,9 +79,9 @@ Rocha: Me diga, sobre o que você tem dúvida?
 	Rocha: Durante um dialogo com um NPC, se você não quiser esperar o texto carregar sozinho, basta apertar a tecla "Esc".
 - Moedas e habilidades
 	Rocha: As moedas são necessárias para você aprimorar as suas habilidades, elas podem cair quando inimigos são derrotados. Junte o máximo que você puder.
-	Rocha: Durante sua jornada você certamente passará por algum vilarejo, e lá você será capaz de trocar elas por upgrades passivos e/ou habilidades ativas.
+	Rocha: Durante sua jornada você encontrará NPCs, com alguns deles você será capaz de trocar suas moedas por upgrades passivos e/ou habilidades ativas.
 	Rocha: As habilidades são benefícios mágicos ou ataques poderosos que você poderá utilizar somente um por vez. Escolhendo o melhor para cada ocasião.
-	Rocha: Em breve você vai aprender mais sobre elas e será capaz de utilizá-las com a tecla X.
+	Rocha: Em breve você vai aprender mais sobre elas e será capaz de utilizá-las.
 - Vida e inimigos
 	Rocha: A sua vida é acumulativa, ou seja, você começa com um máximo de 3, se você estiver com a barra de vida cheia e coletar um coração, sua vida máxima subirá para 4.
 	Rocha:  Os números em sua barra de vida são respectivamente sua vida atual / sua vida máxima. Se você morrer, voltará para o ultimo checkpoint e retorna com a vida máxima de 3.
