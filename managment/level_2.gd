@@ -33,6 +33,7 @@ func _ready() -> void:
 	transition.scene_path = current_level_scene
 	update_health(transition.player_health)
 	get_coins(transition.player_coins)
+	
 	if transition.first_boss_apears == false:
 		$BossCutScene.play("default")
 	else:

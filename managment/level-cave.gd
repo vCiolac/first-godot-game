@@ -9,15 +9,15 @@ extends Node2D
 @export var next_transition_scene: String
 @export var current_level_scene: String = "res://managment/level-2.tscn"
 
+var second_anim: bool = false
+var third_anim: bool = false
+
 func _ready() -> void:
-	open_portal()
 	transition.scene_path = current_level_scene
 	update_health(transition.player_health)
 	get_coins(transition.player_coins)
-
-func open_portal():
-	$Player.visible = false
-	$openPortal.play("default")
+	transition.player_is_hurt = true
+	$Interface.visible = false
 
 func update_health(new_health: int) -> void:
 	if transition.player_health > health_bar.max_value:
@@ -37,7 +37,25 @@ func _on_portal_body_entered(body):
 		transition.fade_in()
 
 
-func _on_open_portal_animation_finished():
-	$Player.visible = true
-	$Player.position = Vector2(25, 539)
-	$openPortal.queue_free()
+func _on_intro_anim_animation_finished(anim_name):
+	match anim_name:
+		'falling':
+			$Interface.visible = true
+			$BackgroundMusic.play()
+
+func second_anim_pass() -> void:
+	second_anim = true
+
+func third_anim_pass() -> void:
+	third_anim = true
+
+func _on_toupeira_area_body_entered(body):
+	if body.is_in_group("Player"):
+		if $IntroAnim.current_animation == "falling":
+			return
+		if second_anim == false:
+			$IntroAnim.play('second')
+		if second_anim == true:
+			$IntroAnim.play('third')
+		if third_anim == true:
+			$IntroAnim.play('fourth')

@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dwljnmthk2hjr" path="res://assets/Assets/painel.png" id="4_a6hmy"]
 [ext_resource type="Texture2D" uid="uid://bvhgvu88c0ef6" path="res://assets/Assets/hp-bar-progress.png" id="4_e4l2f"]
 [ext_resource type="Texture2D" uid="uid://kvy12w1i314l" path="res://assets/Assets/pigdey.png" id="5_rycal"]
-[ext_resource type="Texture2D" uid="uid://diex34kj1pjdo" path="res://assets/ASEPRITES/Exclamation_mark.png" id="7_lwqgp"]
+[ext_resource type="Texture2D" uid="uid://blwlwslag4f8t" path="res://assets/ASEPRITES/Exclamation.png" id="8_3kaxc"]
 [ext_resource type="Texture2D" uid="uid://db6dg2ls4ybnd" path="res://assets/Assets/GUI.png" id="9_dxm5m"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ksbpw"]
@@ -107,7 +107,7 @@ patch_margin_bottom = 2
 [node name="ExclamationMark" type="Sprite2D" parent="Instinct"]
 position = Vector2(16, 16)
 scale = Vector2(0.07, 0.0615625)
-texture = ExtResource("7_lwqgp")
+texture = ExtResource("8_3kaxc")
 
 [node name="baloon" type="NinePatchRect" parent="Instinct"]
 visible = false

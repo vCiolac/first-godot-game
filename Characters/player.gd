@@ -69,11 +69,11 @@ func move(delta):
 		if is_on_floor():
 			$Fly.play()
 			jump()
-		elif not has_double_jump:
+		elif not has_double_jump and !transition.player_is_hurt:
 			$Fly.play()
 			velocity.y = double_jump_velocity
 			has_double_jump = true
-		elif not has_triple_jump:
+		elif not has_triple_jump and !transition.player_is_hurt:
 			$Fly.play()
 			velocity.y = triple_jump_velocity
 			has_triple_jump = true
@@ -146,6 +146,7 @@ func _on_animation_player_animation_finished(anim_name):
 		animation_locked = false
 	match anim_name:
 		'die':
+			transition.coins_collected_during_phase = 0
 			transition.player_health = 0
 			get_tree().reload_current_scene()
 
@@ -176,8 +177,8 @@ func heal_health(value: int) -> void:
 	$Heal.play()
 	
 func get_coins(value: int) -> void:
-	transition.player_coins += value
-	get_tree().call_group("level", "get_coins", transition.player_coins)
+	transition.coins_collected_during_phase += value
+	get_tree().call_group("level", "get_coins", transition.player_coins + transition.coins_collected_during_phase)
 	$Coin.play()
 	
 func spawn_sfx(sfx_path: String) -> void:
