@@ -5,7 +5,7 @@ extends Node2D
 @onready var mana_bar : TextureProgressBar = $Interface/MpBar
 @onready var coins_label : Label = $Interface/Coins
 @onready var health_value : Label = $Interface/HpValue
-@onready var bg_audio: AudioStreamPlayer2D = $Bg
+@onready var bg_audio: AudioStreamPlayer = $Bg
 
 @export var next_transition_scene: String
 @export var current_level_scene: String = "res://managment/level_2.tscn"
@@ -33,6 +33,7 @@ func _ready() -> void:
 	transition.scene_path = current_level_scene
 	update_health(transition.player_health)
 	get_coins(transition.player_coins)
+	
 	if transition.first_boss_apears == false:
 		$BossCutScene.play("default")
 	else:
@@ -103,13 +104,6 @@ func second_crows() -> void:
 	add_child(crow)
 	var crow_animation_player = crow.get_node("AnimationPlayer")
 	crow_animation_player.play("fly_attack")
-	
-#func _on_teleport_body_entered(body):
-#	if body.is_in_group("Player"):
-#		$Player.visible = false
-#		$Player.position = Vector2(3070, 246)
-#		transition.scene_path = next_transition_scene
-#		transition.fade_in(true)
 
 func _on_kill_birds_wall_body_entered(body):
 	body.queue_free()
@@ -136,4 +130,20 @@ func continues():
 	$Storm/TimerThunder.start()
 	$Storm2/TimerThunder.start()
 	$BossCutScene.queue_free()
+
+func do_flash() -> void:
+	$DoneCutScene/Flash.visible = true
+	$DoneCutScene/Flash.play()
+	
+func _on_donecut_body_entered(body):
+	if body.is_in_group("Player"):
+		$Player.can_i_move(false)
+		$KillBirdsWall.position = Vector2(2838, 241)
+		$CrowTimer.stop()
+		$PlatformTimer.stop()
+		$DoneCutScene.play("done")
+	
+func pass_level():
+	transition.scene_path = next_transition_scene
+	transition.fade_in()
 

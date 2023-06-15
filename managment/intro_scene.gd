@@ -16,7 +16,7 @@ func _ready() -> void:
 	$Portal.position = Vector2(1200,261)
 	transition.scene_path = current_level_scene
 	update_health(transition.player_health)
-	get_coins(transition.player_coins)
+	get_coins(transition.player_coins + transition.coins_collected_during_phase)
 	
 func _process(_delta):
 	if State.first_talk == "talked":
@@ -61,4 +61,4 @@ func _on_portal_body_entered(body):
 		$Player.position = $Portal.position
 		$Portal/AnimationPlayer.play("closing")
 		transition.scene_path = next_transition_scene
-		transition.fade_in(true)
+		transition.fade_in()

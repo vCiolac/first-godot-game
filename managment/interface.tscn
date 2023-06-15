@@ -1,11 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://cyak5axceban7"]
+[gd_scene load_steps=13 format=3 uid="uid://cyak5axceban7"]
 
 [ext_resource type="FontFile" uid="uid://b1n4844phckae" path="res://assets/kurland.ttf" id="1_ek7ii"]
+[ext_resource type="Script" path="res://managment/interface.gd" id="1_w2paa"]
 [ext_resource type="Texture2D" uid="uid://bmqcv7k21qtow" path="res://assets/Assets/hpbar-under.png" id="2_t5fyh"]
 [ext_resource type="Texture2D" uid="uid://cm4komevldwx4" path="res://assets/Assets/mp-bar-progress.png" id="3_hg4kf"]
 [ext_resource type="Texture2D" uid="uid://dwljnmthk2hjr" path="res://assets/Assets/painel.png" id="4_a6hmy"]
 [ext_resource type="Texture2D" uid="uid://bvhgvu88c0ef6" path="res://assets/Assets/hp-bar-progress.png" id="4_e4l2f"]
 [ext_resource type="Texture2D" uid="uid://kvy12w1i314l" path="res://assets/Assets/pigdey.png" id="5_rycal"]
+[ext_resource type="Texture2D" uid="uid://blwlwslag4f8t" path="res://assets/ASEPRITES/Exclamation.png" id="8_3kaxc"]
+[ext_resource type="Texture2D" uid="uid://db6dg2ls4ybnd" path="res://assets/Assets/GUI.png" id="9_dxm5m"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ksbpw"]
 texture = ExtResource("4_a6hmy")
@@ -19,7 +22,11 @@ shadow_size = 4
 shadow_color = Color(0, 0, 0, 0.662745)
 shadow_offset = Vector2(3, 3)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mmyje"]
+size = Vector2(32, 32)
+
 [node name="Interface" type="CanvasLayer"]
+script = ExtResource("1_w2paa")
 
 [node name="HpBar" type="TextureProgressBar" parent="."]
 offset_left = 105.4
@@ -83,3 +90,55 @@ rotation = -0.340339
 scale = Vector2(0.35, 0.35)
 texture = ExtResource("5_rycal")
 flip_h = true
+
+[node name="Instinct" type="NinePatchRect" parent="."]
+visible = false
+offset_left = 44.0
+offset_top = 108.0
+offset_right = 76.0
+offset_bottom = 140.0
+texture = ExtResource("4_a6hmy")
+region_rect = Rect2(0, 0, 26, 24)
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+
+[node name="ExclamationMark" type="Sprite2D" parent="Instinct"]
+position = Vector2(16, 16)
+scale = Vector2(0.07, 0.0615625)
+texture = ExtResource("8_3kaxc")
+
+[node name="baloon" type="NinePatchRect" parent="Instinct"]
+visible = false
+layout_mode = 0
+offset_left = 45.0
+offset_top = -6.0
+offset_right = 193.0
+offset_bottom = 43.0
+texture = ExtResource("9_dxm5m")
+region_rect = Rect2(49, 97, 30, 31)
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 4
+
+[node name="Label" type="Label" parent="Instinct/baloon"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 4.0
+offset_right = 140.0
+offset_bottom = 46.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_ek7ii")
+text = "Detecto algo oculto
+ nas proximidades."
+
+[node name="Area2D" type="Area2D" parent="Instinct"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Instinct/Area2D"]
+position = Vector2(16, 16)
+shape = SubResource("RectangleShape2D_mmyje")
+
+[connection signal="mouse_entered" from="Instinct/Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Instinct/Area2D" to="." method="_on_area_2d_mouse_exited"]

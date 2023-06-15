@@ -101,7 +101,6 @@ script = ExtResource("1_safeq")
 shape = SubResource("CircleShape2D_6tymk")
 
 [node name="Hawk" type="AnimatedSprite2D" parent="."]
-self_modulate = Color(0.654902, 0.929412, 0.686275, 1)
 sprite_frames = SubResource("SpriteFrames_3j7gw")
 autoplay = "default"
 flip_h = true

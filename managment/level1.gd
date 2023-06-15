@@ -48,4 +48,4 @@ func _on_portal_body_entered(body):
 		$Player.visible = false
 		$Player.position = Vector2(3070, 246)
 		transition.scene_path = next_transition_scene
-		transition.fade_in(true)
+		transition.fade_in()

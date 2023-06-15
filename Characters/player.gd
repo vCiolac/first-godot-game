@@ -3,12 +3,10 @@ extends CharacterBody2D
 const POOP := preload("res://Characters/poop.tscn")
 var attack_instance: Node = null
 
-@export var speed : float = 150.0
-@export var jump_velocity : float = -120.0
-@export var double_jump_velocity : float = -160.0
-@export var triple_jump_velocity : float = -220.0
-
-@export var damage: int = 1
+var speed = save.player_speed
+var jump_velocity = save.player_jump_velocity
+var double_jump_velocity = save.player_double_jump_velocity
+var triple_jump_velocity = save.player_triple_jump_velocity
 
 var can_attack = true
 var can_move: bool = true
@@ -21,6 +19,7 @@ const AUDIO_TEMPLATE: PackedScene = preload("res://managment/audio_template.tscn
 @onready var colli: CollisionShape2D = get_node("CollisionShape2D")
 @onready var colli_fly: CollisionShape2D = get_node("Collision-fly")
 @onready var actionable_finder: Area2D = $Direction/ActionableFinder
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var has_double_jump : bool = false
@@ -70,11 +69,11 @@ func move(delta):
 		if is_on_floor():
 			$Fly.play()
 			jump()
-		elif not has_double_jump:
+		elif not has_double_jump and !transition.player_is_hurt:
 			$Fly.play()
 			velocity.y = double_jump_velocity
 			has_double_jump = true
-		elif not has_triple_jump:
+		elif not has_triple_jump and !transition.player_is_hurt:
 			$Fly.play()
 			velocity.y = triple_jump_velocity
 			has_triple_jump = true
@@ -147,6 +146,7 @@ func _on_animation_player_animation_finished(anim_name):
 		animation_locked = false
 	match anim_name:
 		'die':
+			transition.coins_collected_during_phase = 0
 			transition.player_health = 0
 			get_tree().reload_current_scene()
 
@@ -177,8 +177,8 @@ func heal_health(value: int) -> void:
 	$Heal.play()
 	
 func get_coins(value: int) -> void:
-	transition.player_coins += value
-	get_tree().call_group("level", "get_coins", transition.player_coins)
+	transition.coins_collected_during_phase += value
+	get_tree().call_group("level", "get_coins", transition.player_coins + transition.coins_collected_during_phase)
 	$Coin.play()
 	
 func spawn_sfx(sfx_path: String) -> void:
@@ -190,7 +190,10 @@ func _on_timer_attack_timeout():
 	can_attack = true
 
 func _on_instinct_area_entered(_area):
-	print("Eu posso sentir que tem algo escondido aqui por perto")
+	transition.instinct = true
+
+func _on_instinct_area_exited(_area):
+	transition.instinct = false
 
 func can_i_move(p: bool) -> void:
 	if p:

@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=3 uid="uid://bhyqpk6e4fp11"]
+
+[ext_resource type="Texture2D" uid="uid://d4gpa1gxn5ppw" path="res://assets/vermin/TunnelingMoleSideIdle.png" id="1_4laxd"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d1ouo"]
+radius = 6.0
+height = 12.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_63n3e"]
+atlas = ExtResource("1_4laxd")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wgpg6"]
+atlas = ExtResource("1_4laxd")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k3l1u"]
+atlas = ExtResource("1_4laxd")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ug2m0"]
+atlas = ExtResource("1_4laxd")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e2ynw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_63n3e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wgpg6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k3l1u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ug2m0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[node name="Toupeira" type="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
+shape = SubResource("CapsuleShape2D_d1ouo")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_e2ynw")
+frame_progress = 0.672018
