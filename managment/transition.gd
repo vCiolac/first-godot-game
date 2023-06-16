@@ -10,6 +10,7 @@ var player_health: int = 3
 var player_coins: int = 0
 var coins_collected_during_phase: int = 0
 var player_is_hurt: bool = false
+var third_level_anim_falling: bool = false
 
 func fade_in() -> void:
 	animation.play("fade_in")
