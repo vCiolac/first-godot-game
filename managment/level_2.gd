@@ -126,6 +126,7 @@ func continues():
 	$Cloud3.visible = true
 	$Storm.visible = true
 	$Storm2.visible = true
+	await get_tree().create_timer(5).timeout
 	$CrowTimer.start()
 	$Storm/TimerThunder.start()
 	$Storm2/TimerThunder.start()

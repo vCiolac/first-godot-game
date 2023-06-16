@@ -11,6 +11,28 @@ extends Node2D
 
 var second_anim: bool = false
 var third_anim: bool = false
+var fourth_anim: bool = false
+
+func _process(_delta) -> void:
+	if Input.is_action_just_pressed("ui_text_clear_carets_and_selection"):
+		if has_node("IntroAnim"):
+			if $IntroAnim.current_animation == "falling":
+				jump_anim()
+		else:
+			pass
+	if transition.third_level_anim_falling == true:
+		$Player.can_i_move(true)
+
+func jump_anim() -> void:
+	$IntroAnim.stop()
+	$Interface.visible = true
+	$Player.can_i_move(true)
+	$Player.position = Vector2 (16, 556)
+	$Player.rotation_degrees = 0
+	$IntroAnim/Toupeira.position = Vector2(423, 517)
+	$IntroAnim/Toupeira.modulate = '#ffffff'
+	$BackgroundMusic.play()
+	transition.third_level_anim_falling = true
 
 func _ready() -> void:
 	transition.scene_path = current_level_scene
@@ -18,6 +40,8 @@ func _ready() -> void:
 	get_coins(transition.player_coins)
 	transition.player_is_hurt = true
 	$Interface.visible = false
+	if transition.third_level_anim_falling == true:
+		jump_anim()
 
 func update_health(new_health: int) -> void:
 	if transition.player_health > health_bar.max_value:
@@ -42,12 +66,18 @@ func _on_intro_anim_animation_finished(anim_name):
 		'falling':
 			$Interface.visible = true
 			$BackgroundMusic.play()
+			transition.third_level_anim_falling = true
+		'five':
+			$IntroAnim.queue_free()
 
 func second_anim_pass() -> void:
 	second_anim = true
 
 func third_anim_pass() -> void:
 	third_anim = true
+	
+func fourth_anim_pass() -> void:
+	fourth_anim = true
 
 func _on_toupeira_area_body_entered(body):
 	if body.is_in_group("Player"):
@@ -59,3 +89,5 @@ func _on_toupeira_area_body_entered(body):
 			$IntroAnim.play('third')
 		if third_anim == true:
 			$IntroAnim.play('fourth')
+		if fourth_anim == true:
+			$IntroAnim.play('five')

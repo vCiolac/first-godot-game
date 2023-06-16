@@ -45,7 +45,7 @@ if  has_jump == "true" and call_bug == ""
 	Rocha: Volte a falar comigo depois disso.
 	=> END
 if call_bug == "called"
-	Rocha: Boa! Agora... ouça com atenção, pombo. [speed=0.5]Existe um perigo que está ameaçando todos os mundos. Uma figura maligna conhecida como "Corvissius" está corrompendo e espalhando trevas por toda parte.
+	Rocha: Boa! Agora... ouça com atenção, pombo. Existe um perigo que está ameaçando todos os mundos. Uma figura maligna conhecida como "Corvissius" está corrompendo e espalhando trevas por toda parte.
 	Rocha: Precisamos que você viaje através dos portais para os diferentes mundos e colete as Plumas de Luz, com elas você será capaz de derrotá-lo!
 	Rocha: Durante sua aventura, explore os cenários, voe pelos céus e desvende mistérios escondidos! Também não deixe de coletar as moedas, com elas você poderá fortaceler suas habilidades!
 	Rocha: Posso contar com você?
