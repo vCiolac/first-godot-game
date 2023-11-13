@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://4aukfr5did5d"
-path="res://.godot/imported/pidhead.png-954fe658175d2e67fd42156222613803.ctex"
+uid="uid://bm30au8mjfc2f"
+path="res://.godot/imported/joystick_base_outline.png-483e8f1ac02a5b9a594f81d7e341a76f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Assets/pidhead.png"
-dest_files=["res://.godot/imported/pidhead.png-954fe658175d2e67fd42156222613803.ctex"]
+source_file="res://joystick/textures/joystick_base_outline.png"
+dest_files=["res://.godot/imported/joystick_base_outline.png-483e8f1ac02a5b9a594f81d7e341a76f.ctex"]
 
 [params]
 

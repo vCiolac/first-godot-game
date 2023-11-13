@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dgu8kj2dq4ux6"
-path="res://.godot/imported/Background.png-1bcf1ba38d61b67425769f11c8cf8926.ctex"
+uid="uid://cxhfbk2glnpgu"
+path="res://.godot/imported/icon.png-487276ed1e3a0c39cad0279d744ee560.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ASEPRITES/tress/Background.png"
-dest_files=["res://.godot/imported/Background.png-1bcf1ba38d61b67425769f11c8cf8926.ctex"]
+source_file="res://icon.png"
+dest_files=["res://.godot/imported/icon.png-487276ed1e3a0c39cad0279d744ee560.ctex"]
 
 [params]
 

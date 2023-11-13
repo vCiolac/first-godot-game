@@ -38,6 +38,9 @@ msgstr ""
 msgid "settings"
 msgstr ""
 
+msgid "show_support"
+msgstr ""
+
 msgid "docs"
 msgstr ""
 
@@ -140,13 +143,22 @@ msgstr ""
 msgid "settings.missing_keys_hint"
 msgstr ""
 
+msgid "settings.characters_translations"
+msgstr ""
+
 msgid "settings.wrap_long_lines"
 msgstr ""
 
 msgid "settings.include_failed_responses"
 msgstr ""
 
+msgid "settings.ignore_missing_state_values"
+msgstr ""
+
 msgid "settings.custom_test_scene"
+msgstr ""
+
+msgid "settings.default_csv_local"
 msgstr ""
 
 msgid "settings.states_shortcuts"
@@ -188,6 +200,9 @@ msgstr ""
 msgid "titles_list.filter"
 msgstr ""
 
+msgid "errors.key_not_found"
+msgstr ""
+
 msgid "errors.line_and_message"
 msgstr ""
 
@@ -204,6 +219,9 @@ msgid "errors.already_imported"
 msgstr ""
 
 msgid "errors.duplicate_import"
+msgstr ""
+
+msgid "errors.unknown_using"
 msgstr ""
 
 msgid "errors.empty_title"
@@ -362,6 +380,9 @@ msgstr ""
 msgid "runtime.unsupported_dictionary_method"
 msgstr ""
 
+msgid "runtime.unsupported_quaternion_method"
+msgstr ""
+
 msgid "runtime.array_index_out_of_bounds"
 msgstr ""
 
@@ -374,6 +395,9 @@ msgstr ""
 msgid "runtime.property_not_found"
 msgstr ""
 
+msgid "runtime.property_not_found_missing_export"
+msgstr ""
+
 msgid "runtime.method_not_found"
 msgstr ""
 
@@ -384,6 +408,9 @@ msgid "runtime.method_not_callable"
 msgstr ""
 
 msgid "runtime.unknown_operator"
+msgstr ""
+
+msgid "runtime.unknown_autoload"
 msgstr ""
 
 msgid "runtime.something_went_wrong"

@@ -12,6 +12,10 @@ var coins_collected_during_phase: int = 0
 var player_is_hurt: bool = false
 var third_level_anim_falling: bool = false
 
+var second_anim: bool = false
+var third_anim: bool = false
+var fourth_anim: bool = false
+
 func fade_in() -> void:
 	animation.play("fade_in")
 	

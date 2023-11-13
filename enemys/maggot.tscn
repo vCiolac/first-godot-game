@@ -366,7 +366,7 @@ hframes = 4
 
 [node name="RayFloor" type="RayCast2D" parent="."]
 position = Vector2(0, 3)
-target_position = Vector2(5, 11)
+target_position = Vector2(5, 9.5)
 
 [node name="SecondRayFloor" type="RayCast2D" parent="."]
 position = Vector2(0, 3)
@@ -392,7 +392,11 @@ position = Vector2(0, 2.5)
 shape = SubResource("CircleShape2D_bnltm")
 debug_color = Color(1, 0.6, 0.701961, 0.419608)
 
+[node name="Timer" type="Timer" parent="AttackArea"]
+wait_time = 2.0
+
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
+[connection signal="timeout" from="AttackArea/Timer" to="." method="_on_timer_timeout"]

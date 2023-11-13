@@ -3,10 +3,7 @@ extends CharacterBody2D
 var player_ref: CharacterBody2D = null
 var move_speed: float = 20.0
 
-var can_attack: bool = false
-const ATTACK_COOLDOWN: float = 2.0
-var attack_cooldown_timer: float = 0.0
-var distance_threshold: float = 13.0
+var hitPlayer: bool = false
 
 const LIFE: PackedScene = preload("res://enemys/hearth.tscn")
 const AUDIO_TEMPLATE: PackedScene = preload("res://managment/audio_template.tscn")
@@ -24,20 +21,15 @@ var walk_amount: float = 0.0
 func _physics_process(delta: float) -> void:
 	if can_die:
 		return
+		
+	if hitPlayer:
+		$AttackArea.monitoring = false
+		$AttackArea.visible = false
 	
-	attack_cooldown_timer -= delta
-	if attack_cooldown_timer <= 0:
-		can_attack = true
-		$AttackArea.monitoring = true
-	
-	if player_ref != null:
-		var direction: Vector2 = global_position.direction_to(player_ref.global_position)
-		var distance: float = global_position.distance_to(player_ref.global_position)
-		if is_on_floor() and can_attack:
-			if distance < distance_threshold:
-				spam_area_attack()
-				return
-			else:
+	if player_ref != null and !hitPlayer:
+		if $RayFloor.is_colliding():
+			var direction: Vector2 = global_position.direction_to(player_ref.global_position)
+			if is_on_floor():
 				var absy = abs(player_ref.global_position.y - global_position.y)
 				var absx = abs(player_ref.global_position.x - global_position.x)
 				if absy > 1 and absx < 2:
@@ -61,11 +53,6 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	animate()
 	update_health_bar()
-
-func spam_area_attack() -> void:
-	can_attack = false
-	attack_cooldown_timer = ATTACK_COOLDOWN
-	$AttackArea.monitoring = false
 
 func animate() -> void:
 	if velocity.x < 0:
@@ -143,4 +130,13 @@ func update_health_bar():
 		$HealthBar.visible = true
 
 func _on_attack_area_body_entered(body):
-	body.update_health(1)
+	if body.is_in_group("Player") and not hitPlayer:
+		hitPlayer = true
+		body.update_health(1)
+		$AttackArea/Timer.start()
+
+
+func _on_timer_timeout():
+	hitPlayer = false
+	$AttackArea.monitoring = true
+	$AttackArea.visible = true
