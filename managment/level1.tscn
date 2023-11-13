@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=3 uid="uid://biq8s1d171vqh"]
+[gd_scene load_steps=75 format=3 uid="uid://biq8s1d171vqh"]
 
 [ext_resource type="Script" path="res://managment/level1.gd" id="1_ncakb"]
 [ext_resource type="Texture2D" uid="uid://218ydr7vij4c" path="res://assets/Nature_environment_01.png" id="2_egtwq"]
@@ -28,7 +28,7 @@
 [ext_resource type="Texture2D" uid="uid://brftqh6ghdqxj" path="res://assets/Assets/Apple.png" id="17_dbvbc"]
 [ext_resource type="Script" path="res://managment/Apple.gd" id="18_r101w"]
 [ext_resource type="AudioStream" uid="uid://clxm857vrjxdo" path="res://assets/SFX/Goblins_Dance_(Battle).wav" id="28_piefh"]
-[ext_resource type="PackedScene" uid="uid://bcu2fqktc25f2" path="res://managment/portal.tscn" id="29_mccsp"]
+[ext_resource type="Texture2D" uid="uid://db6dg2ls4ybnd" path="res://assets/Assets/GUI.png" id="29_povb4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_djjt6"]
 texture = ExtResource("2_egtwq")
@@ -8779,6 +8779,9 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_ho886"]
 radius = 7.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e05nr"]
+size = Vector2(20, 109)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6rsfr"]
 size = Vector2(10, 13)
 
@@ -9168,6 +9171,116 @@ radius = 14.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_djuq4"]
 radius = 120.0
 
+[sub_resource type="Animation" id="Animation_k3can"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("29_povb4")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:region_enabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_46hbl"]
+resource_name = "idle"
+length = 1.5
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("29_povb4")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:region_enabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.75, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.196078), Color(1, 1, 1, 1), Color(1, 1, 1, 0.196078)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vslyi"]
+_data = {
+"RESET": SubResource("Animation_k3can"),
+"idle": SubResource("Animation_46hbl")
+}
+
 [node name="Level-1" type="Node2D" groups=["level"]]
 texture_filter = 1
 position = Vector2(40, -146)
@@ -9555,10 +9668,15 @@ stream = ExtResource("28_piefh")
 volume_db = 2.0
 autoplay = true
 
-[node name="Portal" parent="." instance=ExtResource("29_mccsp")]
-z_index = 1
-position = Vector2(3072, 232)
+[node name="NextScene" type="Area2D" parent="."]
+position = Vector2(3089, 233)
 rotation = -3.14159
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NextScene"]
+position = Vector2(0.000488281, 37.5)
+shape = SubResource("RectangleShape2D_e05nr")
 
 [node name="Player" type="CharacterBody2D" parent="." groups=["Player"]]
 position = Vector2(3, 655)
@@ -9639,11 +9757,52 @@ collision_mask = 128
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Direction/Instinct"]
 shape = SubResource("CircleShape2D_djuq4")
 
+[node name="Arrow" type="Sprite2D" parent="."]
+position = Vector2(3019, 184)
+scale = Vector2(6.37497, 6.4375)
+texture = ExtResource("29_povb4")
+region_enabled = true
+region_rect = Rect2(148, 35, 8, 8)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Arrow"]
+autoplay = "idle"
+speed_scale = 1.4
+libraries = {
+"": SubResource("AnimationLibrary_vslyi")
+}
+
+[node name="Arrow2" type="Sprite2D" parent="."]
+position = Vector2(2995, 185)
+scale = Vector2(4.31256, 4.35486)
+texture = ExtResource("29_povb4")
+region_enabled = true
+region_rect = Rect2(148, 35, 8, 8)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Arrow2"]
+autoplay = "idle"
+speed_scale = 1.2
+libraries = {
+"": SubResource("AnimationLibrary_vslyi")
+}
+
+[node name="Arrow3" type="Sprite2D" parent="."]
+position = Vector2(2973, 186)
+scale = Vector2(3.15631, 3.18727)
+texture = ExtResource("29_povb4")
+region_enabled = true
+region_rect = Rect2(148, 35, 8, 8)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Arrow3"]
+autoplay = "idle"
+libraries = {
+"": SubResource("AnimationLibrary_vslyi")
+}
+
 [connection signal="animation_finished" from="openPortal" to="." method="_on_open_portal_animation_finished"]
 [connection signal="body_entered" from="False-wall/Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="False-wall/Area2D" to="." method="_on_area_2d_body_exited"]
 [connection signal="body_entered" from="Apple/Area2D" to="Apple" method="_on_area_2d_body_entered"]
-[connection signal="body_entered" from="Portal" to="." method="_on_portal_body_entered"]
+[connection signal="body_entered" from="NextScene" to="." method="_on_next_scene_body_entered"]
 [connection signal="animation_finished" from="Player/AnimationPlayer" to="Player" method="_on_animation_player_animation_finished" flags=18]
 [connection signal="timeout" from="Player/Timer_attack" to="Player" method="_on_timer_attack_timeout" flags=18]
 [connection signal="area_entered" from="Player/Direction/Instinct" to="Player" method="_on_instinct_area_entered" flags=18]

@@ -3,7 +3,7 @@ if first_talk == "talking"
 	=> repetir
 if first_talk == ""
 	Pombo: Pruu, pruu...
-	???: Oh, olá pombinho! [wait=1] Parece que temos mais um para iniciar sua jornada...
+	???: Oh, olá, pombinho! [wait=1] Está afim de uma aventura?... E de quebra, ainda ajuda teus amigos pássaros, hehe
 	set first_talk = "talking"
 	=> repetir
 if first_talk == "talked"
@@ -15,9 +15,10 @@ if first_talk == "talked"
 		- Sim
 			=> infos
 	if has_secret == "has"
-		Rocha: Ah! Eu estava procurando por isso... Obrigado!
+		Rocha: Ah! Eu estava procurando esse pingente... Obrigado!
 		set has_secret = "taked"
-		Rocha: Como recompensa, 5 moedinhas brilhantes pra você!
+		Rocha: Como recompensa, irei te dar outra coisa brilhante. 
+		Rocha: Hmm... Que tal 5 moedinhas pra você, pega ai!
 	else
 		Rocha: Ficou com alguma duvida? Posso lhe contar mais detalhes?
 		- Sim, me conte mais.
@@ -28,40 +29,44 @@ if first_talk == "talked"
 ~ repetir
 if has_walked == ""
 	Rocha: Bem-vindo! Eu me chamo Rocha, e estou aqui para lhe explicar um pouco desse universo.
+	Rocha: Vamos começar com o básico. Bom... Para vir falar comigo você já precisou se mexer.. Mas...
+	Rocha: Para se movimentar, você pode usar o analógico que está no canto inferior esquerdo da tela.
 	set has_walked = "waiting"
-	Rocha: Vamos começar com o básico. Para se movimentar, você pode usar as setas do teclado ou as teclas WASD.
+	=> END
 if has_walked == "true" and has_jump == ""
+	Rocha: Ótimo! Agora, pressione o botão "Pular" para bater suas asas e ganhar impulso. O voo é uma habilidade essencial para explorar os cenários, alcançar lugares altos e evitar obstáculos.
 	set  has_jump = "go_jump"
-	Rocha: Ótimo! Agora, pressione a barra de espaço para bater suas asas e ganhar impulso. O voo é uma habilidade essencial para explorar os cenários, alcançar lugares altos e evitar obstáculos.
-	Rocha: Mas lembre-se, estando no chão você só pode dar até três saltos antes de precisar pousar novamente. E caso já esta no ar, são apenas 2.
+	Rocha: Mas lembre-se, quando você está encostando no chão, é capaz de dar até 3 saltos antes de precisar pousar novamente. E caso já esta no ar, são apenas 2 saltos.
+	=> END
 if has_walked == "waiting":
-	Rocha: Vamos, use as setas do teclado ou as teclas WASD para se mover!
+	Rocha: Se move ai, vai...
+	Rocha: Não me julgue... Eu sou um NPC incapaz de andar...
 if  has_jump == "go_jump"
 	Rocha: Estou esperando você treinar seu voo!
 if  has_jump == "true" and call_bug == ""
-	Rocha: Beleza! Agora, a melhor parte é a arma secreta dos pombos... Seu cocô! Sim!! Para atacar seus inimigos, durante o voo, você pode usar o botão esquerdo do mouse, a tecla Z ou a tecla 0 para lançar seus dejetos.
-	Rocha: Irei invocar dois besouros para você testar sua mira, eles são inofensivos e fogem de você, ao serem derrotados eles deixam um coração para aumentar sua vida!
+	Rocha: Beleza! Agora, a melhor parte é a arma dos pombos... Seu cocô! Hehe, Sim!! Para atacar seus inimigos você pode usar o botão "Atacar" que irá lançar seus dejetos pelo ar.
+	Rocha: Irei invocar dois besouros para você testar sua mira, eles são inofensivos e fogem de você, ao serem derrotados eles deixam um coração que é capaz de aumentar sua vida!
 	set call_bug = "call"
 	Rocha: Volte a falar comigo depois disso.
 	=> END
 if call_bug == "called"
 	Rocha: Boa! Agora... ouça com atenção, pombo. Existe um perigo que está ameaçando todos os mundos. Uma figura maligna conhecida como "Corvissius" está corrompendo e espalhando trevas por toda parte.
-	Rocha: Precisamos que você viaje através dos portais para os diferentes mundos e colete as Plumas de Luz, com elas você será capaz de derrotá-lo!
-	Rocha: Durante sua aventura, explore os cenários, voe pelos céus e desvende mistérios escondidos! Também não deixe de coletar as moedas, com elas você poderá fortaceler suas habilidades!
+	Rocha: Precisamos que você viaje através dos portais por diferentes mundos e colete as 'Plumas Antigas', elas são necessárias para montar uma relíquia muito poderosa! Talvez com ela nós sejamos capazes de derrotá-lo...
+	Rocha: Durante sua aventura, explore os cenários, voe pelos céus e desvende os mistérios escondidos! Também não deixe de coletar as moedas, com elas você poderá fortaceler suas habilidades ao longo de sua aventura!
 	Rocha: Posso contar com você?
 	- Sim
 		Rocha:[[ Show de bola! | Belezura! | Tamo junto! ]] Se quiser mais detalhes sobre o jogo, fale novamente comigo.
 		set first_talk = "talked"
 	- Não
-		Rocha: Não? ha ha.. Então lê novamente o que eu falei e repensa... pruu, pruu
+		Rocha: Não? ha ha.. Então lê novamente o que eu falei e repensa... kree, keer ~
 		=> repetir
 	
 => END
 
 ~ pick_secret
 if has_secret == ""
-	Pombo: Parece que encontrei alguma coisa.
-	Pombo: Que tal mostrar isso para o Rocha?
+	Pombo: O que é isso brilhante no chão!?
+	Pombo: Acho uma boa ideia entregar para o Rocha.
 	set has_secret = "has"
 else:
 	Pombo: Não há mais nada aqui.
@@ -72,19 +77,22 @@ else:
 ~ infos
 Rocha: Me diga, sobre o que você tem dúvida?
 - Comandos e ataque
-	Rocha: Bom, acredito que você já deve ser capaz de se mover e voar. Para atacar, use o botão esquerdo do mouse ou a tecla Z.
-	Rocha: Seus projetéis não tem mira, eles irão seguir as leis da física, sempre para baixo e no sentido do seu movimento.
-	Rocha: Você só é capaz de lançar outro cocô quando o anterior atingir alguma coisa ou exceder seu tempo. Inicialmente de 0.3 segundos.
-	Rocha: Para interagir com objetos e NPC's, use a tecla "Enter", ela será bastante útil quando você encontrar segredos pelo mapa.
-	Rocha: Durante um dialogo com um NPC, se você não quiser esperar o texto carregar sozinho, basta apertar a tecla "Esc".
+	Rocha: Bom, agora você já deve ser capaz de se mover e voar... Mas reforçando:
+	Rocha: Para atacar: Use o botão vermelho "Atacar" que fica localizado no canto inferior direito da tela.
+	Rocha: Seus projetéis não tem mira, eles irão seguir uma trajetória, sempre para baixo e no sentido do seu movimento.
+	Rocha: Você só é capaz de lançar outro cocô quando o anterior atingir alguma coisa ou exceder seu tempo limite. Inicialmente de 0.3 segundos.
+	Rocha: Para interagir com objetos e NPC's é simples, quando você estiver dentro da área de alcance apenas clique em qualquer lugar da tela.
+	Rocha: Quando você estiver perto de algum segredo, irá aparecer um ponto de exclamação abaixo do display superior, onde fica sua barra de vida.
 - Moedas e habilidades
-	Rocha: As moedas são necessárias para você aprimorar as suas habilidades, elas podem cair quando inimigos são derrotados. Junte o máximo que você puder.
-	Rocha: Durante sua jornada você encontrará NPCs, com alguns deles você será capaz de trocar suas moedas por upgrades passivos e/ou habilidades ativas.
+	Rocha: As moedas serão necessárias para você aprimorar as suas habilidades, elas podem cair de inimigos derrotados. Junte o máximo que puder.
+	Rocha: Durante sua jornada você encontrará diversos NPCs, e com alguns deles você será capaz de trocar suas moedas por upgrades passivos e/ou habilidades ativas.
 	Rocha: As habilidades são benefícios mágicos ou ataques poderosos que você poderá utilizar somente um por vez. Escolhendo o melhor para cada ocasião.
 	Rocha: Em breve você vai aprender mais sobre elas e será capaz de utilizá-las.
 - Vida e inimigos
 	Rocha: A sua vida é acumulativa, ou seja, você começa com um máximo de 3, se você estiver com a barra de vida cheia e coletar um coração, sua vida máxima subirá para 4.
-	Rocha:  Os números em sua barra de vida são respectivamente sua vida atual / sua vida máxima. Se você morrer, voltará para o ultimo checkpoint e retorna com a vida máxima de 3.
+	Rocha: Os números em sua barra de vida são respectivamente sua vida atual / sua vida máxima. Se você morrer, voltará para o ultimo checkpoint e retorna com a vida máxima de 3.
+	Rocha: Ao passar de fase, a vida acumulativa que estiver vazia será perdida.
+	Rocha: Resumindo: Se sua vida está cheia ao se curar, ela irá acrescentar +1. Se você morrer, perde todos os acréscimos, e ao passar de fase perde os corações vázios.
 	Rocha: Cada inimigo tem uma barra de vida que aparece em cima de sua cabeça quando recebe um ataque, ela continua visível durante todo o tempo em que ele estiver ferido.
 	Rocha: Alguns inimigos tem a capacidade regenerativa, se eles ficarem um tempo sem sofrer dano, irão se curar automaticamente.
 => END

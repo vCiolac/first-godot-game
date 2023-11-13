@@ -1,4 +1,4 @@
-[gd_scene load_steps=83 format=3 uid="uid://bfbbns13noyie"]
+[gd_scene load_steps=97 format=3 uid="uid://bfbbns13noyie"]
 
 [ext_resource type="Script" path="res://managment/level-cave.gd" id="1_4bn3k"]
 [ext_resource type="Texture2D" uid="uid://bdfupet1fsnt1" path="res://assets/ASEPRITES/Buildings.png" id="2_1gmw3"]
@@ -13,12 +13,10 @@
 [ext_resource type="Texture2D" uid="uid://jkken3fcgp5o" path="res://assets/ASEPRITES/tress/Novo Projeto.png" id="9_mfl13"]
 [ext_resource type="Texture2D" uid="uid://qk4p7psjept6" path="res://assets/craftpix-net-352322-nature-pixel-art-environment-free-assets-pack/craftpix-net-358112-free-street-animal-pixel-art-asset-pack/8 Bird 2/Hurt.png" id="9_y1y2h"]
 [ext_resource type="Texture2D" uid="uid://bcng15fuvfus5" path="res://assets/ASEPRITES/tress/Yellow-Tree.png" id="10_7xr4c"]
-[ext_resource type="PackedScene" uid="uid://bcu2fqktc25f2" path="res://managment/portal.tscn" id="10_hk3mc"]
 [ext_resource type="Texture2D" uid="uid://b2eu30iwcjkg5" path="res://assets/dust.png" id="10_sd0tx"]
 [ext_resource type="AudioStream" uid="uid://c1at1vliq2tyh" path="res://assets/SFX/jump.wav" id="11_1ubyh"]
 [ext_resource type="Texture2D" uid="uid://wq8qmfwkrimh" path="res://assets/vermin/Background.png" id="11_q3k25"]
 [ext_resource type="AudioStream" uid="uid://b5kf5xpkjvo7k" path="res://assets/SFX/heal.wav" id="12_fb7pe"]
-[ext_resource type="PackedScene" uid="uid://cyak5axceban7" path="res://managment/interface.tscn" id="12_fn36q"]
 [ext_resource type="Texture2D" uid="uid://bi01jk8fpmgcm" path="res://assets/ASEPRITES/tress/Green-Tree.png" id="13_22lkx"]
 [ext_resource type="AudioStream" uid="uid://dslithgy2o0tr" path="res://assets/SFX/coin.wav" id="13_uc3b2"]
 [ext_resource type="AudioStream" uid="uid://bxks4hivj5udn" path="res://assets/SFX/poop.wav" id="14_e2vdt"]
@@ -33,8 +31,18 @@
 [ext_resource type="Texture2D" uid="uid://bb5x4s5u3w0hv" path="res://assets/dialogues/4-Interrogation Dialog/1-Opening/2.png" id="21_njjt4"]
 [ext_resource type="Texture2D" uid="uid://bu06hiy2hhrk8" path="res://assets/dialogues/4-Interrogation Dialog/1-Opening/3.png" id="22_spgu8"]
 [ext_resource type="Texture2D" uid="uid://ckmm31pmje3hh" path="res://assets/dialogues/4-Interrogation Dialog/1-Opening/4.png" id="23_8b04r"]
+[ext_resource type="Script" path="res://managment/interface.gd" id="28_jkudl"]
+[ext_resource type="Texture2D" uid="uid://bmqcv7k21qtow" path="res://assets/Assets/hpbar-under.png" id="29_b284n"]
+[ext_resource type="Texture2D" uid="uid://bvhgvu88c0ef6" path="res://assets/Assets/hp-bar-progress.png" id="30_1axgs"]
+[ext_resource type="Texture2D" uid="uid://cm4komevldwx4" path="res://assets/Assets/mp-bar-progress.png" id="31_cqf7m"]
+[ext_resource type="Texture2D" uid="uid://dwljnmthk2hjr" path="res://assets/Assets/painel.png" id="32_8yyfq"]
+[ext_resource type="FontFile" uid="uid://b1n4844phckae" path="res://assets/kurland.ttf" id="33_hift6"]
 [ext_resource type="AudioStream" uid="uid://c83reub1xwd0r" path="res://assets/SFX/Track Fill - lvl 3.wav" id="33_qkj3h"]
+[ext_resource type="Texture2D" uid="uid://kvy12w1i314l" path="res://assets/Assets/pigdey.png" id="34_v1ist"]
 [ext_resource type="PackedScene" uid="uid://bv0in7a48hr6k" path="res://enemys/maggot.tscn" id="35_smpii"]
+[ext_resource type="Texture2D" uid="uid://blwlwslag4f8t" path="res://assets/ASEPRITES/Exclamation.png" id="35_t6hc8"]
+[ext_resource type="Texture2D" uid="uid://db6dg2ls4ybnd" path="res://assets/Assets/GUI.png" id="36_3xkho"]
+[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://joystick/virtual_joystick.tscn" id="37_uc3bq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mvnbw"]
 texture = ExtResource("3_mhall")
@@ -1886,15 +1894,19 @@ texture = ExtResource("4_iq1ct")
 13:8/0 = 0
 13:8/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 13:8/0/physics_layer_0/angular_velocity = 0.0
+13:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(3, 5.5, 8, 4.5, 8, 8, -0.5, 8)
 14:8/0 = 0
 14:8/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 14:8/0/physics_layer_0/angular_velocity = 0.0
+14:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 4.5, 8, -1, 8, 8, -8, 8)
 15:8/0 = 0
 15:8/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 15:8/0/physics_layer_0/angular_velocity = 0.0
+15:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -1, 8, -3.5, 8, 8, -8, 8)
 16:8/0 = 0
 16:8/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 16:8/0/physics_layer_0/angular_velocity = 0.0
+16:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -3.5, -1, -2.5, 3.5, -0.5, 6, 4.5, 6.5, 8, -8, 8)
 0:9/0 = 0
 0:9/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:9/0/physics_layer_0/angular_velocity = 0.0
@@ -1937,15 +1949,19 @@ texture = ExtResource("4_iq1ct")
 13:9/0 = 0
 13:9/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 13:9/0/physics_layer_0/angular_velocity = 0.0
+13:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-0.5, -8, 8, -8, 8, 8, -0.5, 8, -4, 4.5, -4, -5)
 14:9/0 = 0
 14:9/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 14:9/0/physics_layer_0/angular_velocity = 0.0
+14:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 15:9/0 = 0
 15:9/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 15:9/0/physics_layer_0/angular_velocity = 0.0
+15:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 16:9/0 = 0
 16:9/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 16:9/0/physics_layer_0/angular_velocity = 0.0
+16:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 6.5, -8, 5.5, 2, -1, 8, -8, 8)
 1:10/0 = 0
 1:10/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:10/0/physics_layer_0/angular_velocity = 0.0
@@ -5859,7 +5875,7 @@ tracks/12/keys = {
 "start_offset": 0.0,
 "stream": ExtResource("16_xd13v")
 }, {
-"end_offset": 0.0,
+"end_offset": 2.57041,
 "start_offset": 0.0,
 "stream": ExtResource("15_8kibs")
 }, {
@@ -6451,7 +6467,7 @@ tracks/12/keys = {
 "start_offset": 0.0,
 "stream": ExtResource("16_xd13v")
 }, {
-"end_offset": 0.0,
+"end_offset": 2.57041,
 "start_offset": 0.0,
 "stream": ExtResource("15_8kibs")
 }, {
@@ -6499,7 +6515,7 @@ tracks/12/keys = {
 "start_offset": 0.0,
 "stream": ExtResource("16_xd13v")
 }, {
-"end_offset": 0.0,
+"end_offset": 4.5017,
 "start_offset": 0.0,
 "stream": ExtResource("15_8kibs")
 }, {
@@ -6736,7 +6752,7 @@ tracks/3/keys = {
 "start_offset": 0.0,
 "stream": ExtResource("16_xd13v")
 }, {
-"end_offset": 0.0,
+"end_offset": 5.26037,
 "start_offset": 0.219258,
 "stream": ExtResource("15_8kibs")
 }],
@@ -7227,7 +7243,7 @@ tracks/14/path = NodePath(".")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
-"times": PackedFloat32Array(10.9),
+"times": PackedFloat32Array(1.4),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -7390,7 +7406,7 @@ tracks/6/keys = {
 "start_offset": 0.0,
 "stream": ExtResource("16_xd13v")
 }, {
-"end_offset": 0.0,
+"end_offset": 2.85,
 "start_offset": 0.0,
 "stream": ExtResource("15_8kibs")
 }],
@@ -7440,7 +7456,7 @@ tracks/10/path = NodePath(".")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
-"times": PackedFloat32Array(8),
+"times": PackedFloat32Array(7),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -7495,11 +7511,11 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "clips": [{
-"end_offset": 0.0,
+"end_offset": 3.66832,
 "start_offset": 0.0,
 "stream": ExtResource("15_8kibs")
 }],
-"times": PackedFloat32Array(0)
+"times": PackedFloat32Array(0.7)
 }
 tracks/1/use_blend = true
 tracks/2/type = "value"
@@ -7545,7 +7561,7 @@ tracks/5/path = NodePath(".")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(4.6),
+"times": PackedFloat32Array(4),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -7777,10 +7793,32 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Node2D" type="Node2D" groups=["level"]]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j6ydn"]
+size = Vector2(25, 42)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ksbpw"]
+texture = ExtResource("32_8yyfq")
+
+[sub_resource type="LabelSettings" id="LabelSettings_vcv1k"]
+font = ExtResource("33_hift6")
+font_size = 28
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 4
+shadow_color = Color(0, 0, 0, 0.662745)
+shadow_offset = Vector2(3, 3)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mmyje"]
+size = Vector2(32, 32)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_bnj1s"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_tiwqs"]
+
+[node name="level-3" type="Node2D" groups=["level"]]
 script = ExtResource("1_4bn3k")
-next_transition_scene = "res://managment/level-cave.tscn"
-current_level_scene = "res://managment/level-cave.tscn"
+next_transition_scene = "res://managment/level_3.tscn"
+current_level_scene = "res://managment/cave.tscn"
 
 [node name="Maps" type="Node2D" parent="."]
 
@@ -7803,7 +7841,7 @@ layer_1/tile_data = PackedInt32Array(2293801, 983040, 15, 2228264, 1310720, 15, 
 tile_set = SubResource("TileSet_mcr5h")
 format = 2
 layer_0/name = "0"
-layer_0/tile_data = PackedInt32Array(2162712, 393216, 5, 2228248, 393216, 6, 2162713, 458752, 5, 2228249, 458752, 6)
+layer_0/tile_data = PackedInt32Array(2162712, 393216, 5, 2228248, 393216, 6, 2162713, 458752, 5, 2228249, 458752, 6, 2359470, 983040, 8, 2425006, 983040, 9, 2359471, 1048576, 8, 2425007, 1048576, 9)
 layer_1/name = "1"
 layer_1/enabled = true
 layer_1/modulate = Color(1, 1, 1, 1)
@@ -8098,11 +8136,221 @@ scale = Vector2(0.8, 0.8)
 sprite_frames = SubResource("SpriteFrames_f1ssa")
 autoplay = "default"
 
-[node name="Portal" parent="." instance=ExtResource("10_hk3mc")]
-position = Vector2(2894, 525)
+[node name="ToCave" type="Area2D" parent="."]
+position = Vector2(2899, 525)
 rotation = 3.14159
+collision_layer = 0
+collision_mask = 32
 
-[node name="Interface" parent="." instance=ExtResource("12_fn36q")]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ToCave"]
+position = Vector2(-2.5, 4.99988)
+shape = SubResource("RectangleShape2D_j6ydn")
+
+[node name="Interface" type="CanvasLayer" parent="."]
+offset = Vector2(-10, 5)
+transform = Transform2D(1, 0, 0, 1, -10, 5)
+script = ExtResource("28_jkudl")
+
+[node name="HpBar" type="TextureProgressBar" parent="Interface"]
+offset_left = 105.4
+offset_top = 5.0
+offset_right = 157.4
+offset_bottom = 12.0
+scale = Vector2(4.2, 3.84)
+max_value = 3.0
+value = 3.0
+texture_under = ExtResource("29_b284n")
+texture_progress = ExtResource("30_1axgs")
+
+[node name="MpBar" type="TextureProgressBar" parent="Interface"]
+offset_left = 106.0
+offset_top = 28.0
+offset_right = 158.0
+offset_bottom = 35.0
+scale = Vector2(3.3, 3.84)
+max_value = 5.0
+texture_under = ExtResource("29_b284n")
+texture_progress = ExtResource("31_cqf7m")
+
+[node name="Panel" type="Panel" parent="Interface"]
+offset_left = 14.0
+offset_top = 5.0
+offset_right = 291.0
+offset_bottom = 150.0
+scale = Vector2(0.85, 0.638)
+theme_override_styles/panel = SubResource("StyleBoxTexture_ksbpw")
+
+[node name="Coins" type="Label" parent="Interface"]
+offset_left = 137.0
+offset_top = 59.0
+offset_right = 236.0
+offset_bottom = 92.0
+text = "000000"
+label_settings = SubResource("LabelSettings_vcv1k")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="HpValue" type="Label" parent="Interface"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 204.0
+offset_top = 12.0
+offset_right = -895.0
+offset_bottom = -603.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.4, 0.4)
+size_flags_horizontal = 4
+text = "0 / 3"
+label_settings = SubResource("LabelSettings_vcv1k")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Pidhead" type="Sprite2D" parent="Interface"]
+position = Vector2(60, 56)
+rotation = -0.340339
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("34_v1ist")
+flip_h = true
+
+[node name="Instinct" type="NinePatchRect" parent="Interface"]
+visible = false
+offset_left = 44.0
+offset_top = 108.0
+offset_right = 76.0
+offset_bottom = 140.0
+texture = ExtResource("32_8yyfq")
+region_rect = Rect2(0, 0, 26, 24)
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+
+[node name="ExclamationMark" type="Sprite2D" parent="Interface/Instinct"]
+position = Vector2(16, 16)
+scale = Vector2(0.07, 0.0615625)
+texture = ExtResource("35_t6hc8")
+
+[node name="baloon" type="NinePatchRect" parent="Interface/Instinct"]
+visible = false
+layout_mode = 0
+offset_left = 45.0
+offset_top = -6.0
+offset_right = 193.0
+offset_bottom = 43.0
+texture = ExtResource("36_3xkho")
+region_rect = Rect2(49, 97, 30, 31)
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 4
+
+[node name="Label" type="Label" parent="Interface/Instinct/baloon"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 4.0
+offset_right = 140.0
+offset_bottom = 46.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("33_hift6")
+text = "Detecto algo oculto
+ nas proximidades."
+
+[node name="Area2D" type="Area2D" parent="Interface/Instinct"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interface/Instinct/Area2D"]
+position = Vector2(16, 16)
+shape = SubResource("RectangleShape2D_mmyje")
+
+[node name="BallonTimer" type="Timer" parent="Interface/Instinct"]
+one_shot = true
+
+[node name="UI" type="CanvasLayer" parent="Interface"]
+visible = false
+
+[node name="Virtual joystick left" parent="Interface/UI" instance=ExtResource("37_uc3bq")]
+offset_left = -5.0
+offset_top = -237.0
+offset_right = 295.0
+offset_bottom = 63.0
+scale = Vector2(0.85, 0.85)
+action_left = "left"
+action_right = "right"
+action_up = "up"
+action_down = "down"
+
+[node name="Virtual right" type="Control" parent="Interface/UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 862.0
+offset_top = 423.0
+offset_right = 1162.0
+offset_bottom = 723.0
+scale = Vector2(0.75, 0.75)
+
+[node name="Jump" type="NinePatchRect" parent="Interface/UI/Virtual right"]
+layout_mode = 0
+offset_left = 138.0
+offset_top = 67.0
+offset_right = 355.0
+offset_bottom = 178.0
+texture = ExtResource("36_3xkho")
+region_rect = Rect2(113, 81, 30, 14)
+patch_margin_left = 1
+patch_margin_top = 1
+patch_margin_right = 1
+patch_margin_bottom = 2
+
+[node name="JumpButton" type="TouchScreenButton" parent="Interface/UI/Virtual right/Jump"]
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(-0.666626, -0.333374)
+scale = Vector2(217.333, 110.667)
+texture_normal = SubResource("CanvasTexture_bnj1s")
+action = "jump"
+
+[node name="JumpText" type="Label" parent="Interface/UI/Virtual right/Jump"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 0.666748
+offset_right = 211.0
+offset_bottom = 107.667
+theme_override_fonts/font = ExtResource("33_hift6")
+theme_override_font_sizes/font_size = 66
+text = "Pular"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Attack" type="NinePatchRect" parent="Interface/UI/Virtual right"]
+self_modulate = Color(0.611765, 0.12549, 0, 1)
+layout_mode = 0
+offset_left = -64.0
+offset_top = 183.0
+offset_right = 121.0
+offset_bottom = 267.0
+texture = ExtResource("36_3xkho")
+region_rect = Rect2(81, 97, 30, 30)
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+
+[node name="AttackText" type="Label" parent="Interface/UI/Virtual right/Attack"]
+layout_mode = 0
+offset_right = 185.0
+offset_bottom = 84.0
+theme_override_fonts/font = ExtResource("33_hift6")
+theme_override_font_sizes/font_size = 48
+text = "Atacar"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AttackButton" type="TouchScreenButton" parent="Interface/UI/Virtual right/Attack"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(-3.05176e-05, 0.999992)
+scale = Vector2(185.333, 82.6667)
+texture_normal = SubResource("CanvasTexture_tiwqs")
+action = "attack"
 
 [node name="BG" type="Node2D" parent="."]
 position = Vector2(529, 358)
@@ -8439,4 +8687,6 @@ position = Vector2(1623, 563)
 [connection signal="area_exited" from="Player/Direction/Instinct" to="Player" method="_on_instinct_area_exited" flags=18]
 [connection signal="animation_finished" from="IntroAnim" to="." method="_on_intro_anim_animation_finished"]
 [connection signal="body_entered" from="IntroAnim/Toupeira/toupeira_area" to="." method="_on_toupeira_area_body_entered"]
-[connection signal="body_entered" from="Portal" to="." method="_on_portal_body_entered"]
+[connection signal="body_entered" from="ToCave" to="." method="_on_to_cave_body_entered"]
+[connection signal="mouse_entered" from="Interface/Instinct/Area2D" to="Interface" method="_on_area_2d_mouse_entered" flags=18]
+[connection signal="timeout" from="Interface/Instinct/BallonTimer" to="Interface" method="_on_ballon_timer_timeout" flags=18]

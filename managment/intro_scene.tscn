@@ -256,7 +256,7 @@ position = Vector2(29, 557)
 texture = ExtResource("4_5cdk8")
 
 [node name="Crystal-5" type="Sprite2D" parent="objects"]
-position = Vector2(1078, 618)
+position = Vector2(904, 579)
 rotation = -0.450295
 texture = ExtResource("5_8j7oh")
 
@@ -393,7 +393,7 @@ position = Vector2(263, 656)
 scale = Vector2(1, 0.1)
 
 [node name="Spike3" parent="." instance=ExtResource("14_nlghd")]
-position = Vector2(1117, 651)
+position = Vector2(1117, 653)
 scale = Vector2(1.5, 0.1)
 
 [node name="Spike2" parent="." instance=ExtResource("14_nlghd")]
@@ -407,7 +407,7 @@ dialogue_resource = ExtResource("16_4whv6")
 dialogue_start = "pick_secret"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Actionable"]
-position = Vector2(655, 638)
+position = Vector2(478, 597)
 shape = SubResource("CircleShape2D_ccx2o")
 
 [node name="summon" type="AudioStreamPlayer2D" parent="."]

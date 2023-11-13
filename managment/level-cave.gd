@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var interface : CanvasLayer = $Interface
+@onready var joystick : CanvasLayer = $Interface/UI
 @onready var health_bar : TextureProgressBar = $Interface/HpBar
 @onready var mana_bar : TextureProgressBar = $Interface/MpBar
 @onready var coins_label : Label = $Interface/Coins
@@ -8,10 +9,6 @@ extends Node2D
 
 @export var next_transition_scene: String
 @export var current_level_scene: String = "res://managment/level-2.tscn"
-
-var second_anim: bool = false
-var third_anim: bool = false
-var fourth_anim: bool = false
 
 func _process(_delta) -> void:
 	if Input.is_action_just_pressed("ui_text_clear_carets_and_selection"):
@@ -26,10 +23,18 @@ func _process(_delta) -> void:
 func jump_anim() -> void:
 	$IntroAnim.stop()
 	$Interface.visible = true
+	joystick.visible = true
 	$Player.can_i_move(true)
 	$Player.position = Vector2 (16, 556)
 	$Player.rotation_degrees = 0
-	$IntroAnim/Toupeira.position = Vector2(423, 517)
+	if transition.second_anim == false:
+		$IntroAnim/Toupeira.position = Vector2(423, 517)
+	if transition.second_anim:
+		$IntroAnim/Toupeira.position = Vector2(824, 552)
+	if transition.third_anim:
+		$IntroAnim/Toupeira.position = Vector2(1919,601)
+	if transition.fourth_anim:
+		$IntroAnim/Toupeira.position = Vector2(2742,534)
 	$IntroAnim/Toupeira.modulate = '#ffffff'
 	$BackgroundMusic.play()
 	transition.third_level_anim_falling = true
@@ -40,6 +45,7 @@ func _ready() -> void:
 	get_coins(transition.player_coins)
 	transition.player_is_hurt = true
 	$Interface.visible = false
+	joystick.visible = false
 	if transition.third_level_anim_falling == true:
 		jump_anim()
 
@@ -52,42 +58,42 @@ func update_health(new_health: int) -> void:
 func get_coins(new_coins: int) -> void:
 	coins_label.text = str(new_coins)
 
-func _on_portal_body_entered(body):
-	if body.is_in_group("Player"):
-		$Player.visible = false
-		$Player.position = Vector2(1047, 540)
-		$Portal/AnimationPlayer.play("closing")
-		transition.scene_path = next_transition_scene
-		transition.fade_in()
-
-
 func _on_intro_anim_animation_finished(anim_name):
 	match anim_name:
 		'falling':
 			$Interface.visible = true
+			joystick.visible = true
 			$BackgroundMusic.play()
 			transition.third_level_anim_falling = true
 		'five':
 			$IntroAnim.queue_free()
 
 func second_anim_pass() -> void:
-	second_anim = true
+	transition.second_anim = true
 
 func third_anim_pass() -> void:
-	third_anim = true
+	transition.third_anim = true
 	
 func fourth_anim_pass() -> void:
-	fourth_anim = true
+	transition.fourth_anim = true
 
 func _on_toupeira_area_body_entered(body):
 	if body.is_in_group("Player"):
 		if $IntroAnim.current_animation == "falling":
 			return
-		if second_anim == false:
+		if transition.second_anim == false:
 			$IntroAnim.play('second')
-		if second_anim == true:
+		if transition.second_anim == true:
 			$IntroAnim.play('third')
-		if third_anim == true:
+		if transition.third_anim == true:
 			$IntroAnim.play('fourth')
-		if fourth_anim == true:
+		if transition.fourth_anim == true:
 			$IntroAnim.play('five')
+
+
+func _on_to_cave_body_entered(body):
+	if body.is_in_group("Player"):
+		$Player.visible = false
+		$Player.position = Vector2(1047, 540)
+		transition.scene_path = next_transition_scene
+		transition.fade_in()

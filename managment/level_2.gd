@@ -5,6 +5,7 @@ extends Node2D
 @onready var mana_bar : TextureProgressBar = $Interface/MpBar
 @onready var coins_label : Label = $Interface/Coins
 @onready var health_value : Label = $Interface/HpValue
+@onready var joystick : CanvasLayer = $Interface/UI
 @onready var bg_audio: AudioStreamPlayer = $Bg
 
 @export var next_transition_scene: String
@@ -110,6 +111,7 @@ func _on_kill_birds_wall_body_entered(body):
 
 func _on_boss_cut_scene_animation_finished(_anim_name):
 	$Interface.visible = true
+	joystick.visible = true
 	$Cloud3.emitting = true
 	$Cloud3.visible = true
 	$Storm.visible = true
@@ -122,6 +124,7 @@ func _on_boss_cut_scene_animation_finished(_anim_name):
 
 func continues():
 	$Interface.visible = true
+	joystick.visible = true
 	$Cloud3.emitting = true
 	$Cloud3.visible = true
 	$Storm.visible = true

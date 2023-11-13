@@ -42,9 +42,8 @@ func _on_area_2d_body_entered(body):
 func _on_area_2d_body_exited(_body):
 	$"False-wall".visible = true
 
-func _on_portal_body_entered(body):
+func _on_next_scene_body_entered(body):
 	if body.is_in_group("Player"):
-		$Portal/AnimationPlayer.play("closing")
 		$Player.visible = false
 		$Player.position = Vector2(3070, 246)
 		transition.scene_path = next_transition_scene

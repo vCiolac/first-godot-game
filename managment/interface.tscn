@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cyak5axceban7"]
+[gd_scene load_steps=16 format=3 uid="uid://cyak5axceban7"]
 
 [ext_resource type="FontFile" uid="uid://b1n4844phckae" path="res://assets/kurland.ttf" id="1_ek7ii"]
 [ext_resource type="Script" path="res://managment/interface.gd" id="1_w2paa"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://kvy12w1i314l" path="res://assets/Assets/pigdey.png" id="5_rycal"]
 [ext_resource type="Texture2D" uid="uid://blwlwslag4f8t" path="res://assets/ASEPRITES/Exclamation.png" id="8_3kaxc"]
 [ext_resource type="Texture2D" uid="uid://db6dg2ls4ybnd" path="res://assets/Assets/GUI.png" id="9_dxm5m"]
+[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://joystick/virtual_joystick.tscn" id="10_srjd4"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ksbpw"]
 texture = ExtResource("4_a6hmy")
@@ -25,7 +26,13 @@ shadow_offset = Vector2(3, 3)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mmyje"]
 size = Vector2(32, 32)
 
+[sub_resource type="CanvasTexture" id="CanvasTexture_bnj1s"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_tiwqs"]
+
 [node name="Interface" type="CanvasLayer"]
+offset = Vector2(-10, 7)
+transform = Transform2D(1, 0, 0, 1, -10, 7)
 script = ExtResource("1_w2paa")
 
 [node name="HpBar" type="TextureProgressBar" parent="."]
@@ -140,5 +147,92 @@ text = "Detecto algo oculto
 position = Vector2(16, 16)
 shape = SubResource("RectangleShape2D_mmyje")
 
+[node name="BallonTimer" type="Timer" parent="Instinct"]
+one_shot = true
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Virtual joystick left" parent="UI" instance=ExtResource("10_srjd4")]
+offset_left = -20.0
+offset_top = -269.0
+offset_right = 280.0
+offset_bottom = 31.0
+action_left = "left"
+action_right = "right"
+action_up = "up"
+action_down = "down"
+
+[node name="Virtual right" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 862.0
+offset_top = 423.0
+offset_right = 1162.0
+offset_bottom = 723.0
+scale = Vector2(0.75, 0.75)
+
+[node name="Jump" type="NinePatchRect" parent="UI/Virtual right"]
+layout_mode = 0
+offset_left = 138.0
+offset_top = 67.0
+offset_right = 355.0
+offset_bottom = 178.0
+texture = ExtResource("9_dxm5m")
+region_rect = Rect2(113, 81, 30, 14)
+patch_margin_left = 1
+patch_margin_top = 1
+patch_margin_right = 1
+patch_margin_bottom = 2
+
+[node name="JumpButton" type="TouchScreenButton" parent="UI/Virtual right/Jump"]
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(-0.666626, -0.333374)
+scale = Vector2(217.333, 110.667)
+texture_normal = SubResource("CanvasTexture_bnj1s")
+action = "jump"
+
+[node name="JumpText" type="Label" parent="UI/Virtual right/Jump"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 0.666748
+offset_right = 211.0
+offset_bottom = 107.667
+theme_override_fonts/font = ExtResource("1_ek7ii")
+theme_override_font_sizes/font_size = 66
+text = "Pular"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Attack" type="NinePatchRect" parent="UI/Virtual right"]
+self_modulate = Color(0.611765, 0.12549, 0, 1)
+layout_mode = 0
+offset_left = -64.0
+offset_top = 183.0
+offset_right = 121.0
+offset_bottom = 267.0
+texture = ExtResource("9_dxm5m")
+region_rect = Rect2(81, 97, 30, 30)
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+
+[node name="AttackText" type="Label" parent="UI/Virtual right/Attack"]
+layout_mode = 0
+offset_right = 185.0
+offset_bottom = 84.0
+theme_override_fonts/font = ExtResource("1_ek7ii")
+theme_override_font_sizes/font_size = 48
+text = "Atacar"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AttackButton" type="TouchScreenButton" parent="UI/Virtual right/Attack"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(-3.05176e-05, 0.999992)
+scale = Vector2(185.333, 82.6667)
+texture_normal = SubResource("CanvasTexture_tiwqs")
+action = "attack"
+
 [connection signal="mouse_entered" from="Instinct/Area2D" to="." method="_on_area_2d_mouse_entered"]
-[connection signal="mouse_exited" from="Instinct/Area2D" to="." method="_on_area_2d_mouse_exited"]
+[connection signal="timeout" from="Instinct/BallonTimer" to="." method="_on_ballon_timer_timeout"]

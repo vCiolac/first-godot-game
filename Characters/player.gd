@@ -34,7 +34,7 @@ func _ready() -> void:
 		return
 
 func _unhandled_input(_event: InputEvent) -> void:
-	if Input.is_action_just_pressed("ui_text_submit"):
+	if Input.is_action_just_pressed("click"):
 		var actionables = actionable_finder.get_overlapping_areas()
 		if actionables.size() > 0:
 			actionables[0].action()
@@ -124,6 +124,8 @@ func update_facing_direction():
 		$"Poop-position".position.x = 4
 
 func jump():
+	if animation.current_animation == "hit":
+		return
 	if is_on_floor():
 		colli_fly.set_disabled(false)
 		velocity.y = jump_velocity
@@ -137,6 +139,8 @@ func jump():
 	animation_locked = true
 
 func land():
+	if animation.current_animation == "hit":
+		return
 	colli_fly.set_disabled(true)
 	animation.play("idle")
 	animation_locked = true
