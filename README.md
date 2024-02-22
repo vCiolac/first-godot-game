@@ -19,7 +19,8 @@ Em **Pigeon Adventure**, você assume o controle de um corajoso pombo, que embar
 ![Screenshot 2](screenshots/screenshot2.png)
 
 ## Como Jogar
-
+A- Use o link do itch.io e jogue pelo navegador.
+B-
 1. Clone o repositório.
 2. Abra o projeto na Godot Engine 4.x.
 3. Execute o jogo e mergulhe nas intensas aventuras do Pigeon!
