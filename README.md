@@ -15,8 +15,9 @@ Em **Pigeon Adventure**, você assume o controle de um corajoso pombo, que embar
 
 ## Capturas de Tela
 
-![Screenshot 1](screenshots/screenshot1.png)
-![Screenshot 2](screenshots/screenshot2.png)
+![Screenshot 1](https://vciolac.vercel.app/assets/pid0-d85daaf7.jpeg)
+![Screenshot 2](https://vciolac.vercel.app/assets/pid2-0833ec31.jpeg)
+![Screenshot 3](https://vciolac.vercel.app/assets/pid3-bffe8c6c.jpeg)
 
 ## Como Jogar
 A - Use o link do itch.io e jogue pelo navegador.
